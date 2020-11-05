@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>基于15-rMBP和ChipFancier磁盘的三系统构建方案 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&#x2F;*本文涉及多系统多磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。*&#x2F;&#x2F;*Ubuntu采用GPL协议发布，使用即修改该项目的代码请遵守GPL协议。*&#x2F;&#x2F;*Windows及Windows to Go为Microsoft公司的（注册）商标，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于15-rMBP和ChipFancier磁盘的三系统构建方案">
+<meta property="og:url" content="http://example.com/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&#x2F;*本文涉及多系统多磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。*&#x2F;&#x2F;*Ubuntu采用GPL协议发布，使用即修改该项目的代码请遵守GPL协议。*&#x2F;&#x2F;*Windows及Windows to Go为Microsoft公司的（注册）商标，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于2">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T20:00:32.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.653Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于15-rmbp和chipfancier磁盘的三系统构建方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-01-03T20:00:32.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于15-rMBP和ChipFancier磁盘的三系统构建方案
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*本文涉及多系统多磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。*/<br>/*Ubuntu采用GPL协议发布，使用即修改该项目的代码请遵守GPL协议。*/<br>/*Windows及Windows to Go为Microsoft公司的（注册）商标，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于24小时内删除相关内容。*/<br>/*对Macintosh HD分区的操作可能会受到Apple公司保修政策的限制，请慎重操作。*/<br>/*对磁盘的操作可能会导致数据丢失，建议备份重要数据，病情谨慎操作。*/<br>/*本构件方案尚属于beta阶段，仅能确定找到三个系统的引导路径。三系统间的扼制关系、挟制关系及系统稳定性等尚不能保障。不建议在您的工作计算机（主力计算机）上进行操作。*/<br>/*本帖属于萝卜头IT论坛的深度技术探究，而非面向全网发布的成熟技术档案。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*/</p>
+<p>前些日子，站长nkc3g4发布了Ubuntu to Go和Ubuntu＋Windows双系统to Go的教程；因为工作中某些统计分析软件没有Mac OS X兼容的版本（CrossOver和Wine软件是不能兼容和调用包含多个加载库的软件包的，会导致各种“dll丢失”、“软件在此兼容性设置下无法运行”等错误），同时又需要Linux环境对部分软件（比如R语言）回报结果进行二次验证；双系统to Go就成为一个很好的选择；再加上手头有一个CHIPFANCIER磁盘，一个识别为本地磁盘的USB-SSD。就开始了一系列折腾。</p>
+<p>首先就我折腾的过程来说说。</p>
+<p>为了防止混淆，Mac系统表述为Mac OS X，Mac电脑表述为Macintosh，Mac系统所在的内置“固态硬盘”表述为Macintosh HD。<br>已有的Windows to Go是建立在SK6221本地磁盘上的Windows to Go，传统模式，UEFI＋GPT，系统版本为cn_windows_8.1_professional_vl_with_update_x64_dvd_4050293.iso。<br>已有的WinPE是建立在Corsair Survivor 32GB上的杏雨梨云USB维护系统。</p>
+<p>01.在Mac OS X里用Ubuntu的官方工具做一个可启动U盘，所用的磁盘为Sandisk CZ73，为一个不可量产的可移动磁盘，作为Ubuntu to Go的安装磁盘；在制作过程中发现：如果磁盘格式化为NTFS格式，则Macintosh开机按option启动找不到该U盘的引导选项；如果把磁盘格式化为FAT32格式，则Macintosh开机按option启动可以找到一个EFI Boot选项；上述结果不受磁盘分区表的影响，GPT分区表和MBR分区表结果不变。<br>结论为：Macintosh仅可以识别FAT32或FAT16（ESP分区的本质是FAT16格式分区）格式的引导分区。</p>
+<p>02.Macintosh开机按option从Ubuntu的安装磁盘启动，选择EFI Boot启动后即插入ChipFancier磁盘，执行Ubuntu的安装过程，按照缺省提示建立相应的ext4和swap分区，两个分区占据整个ChipFancier磁盘，即仅安装Ubuntu to Go，Ubuntu安装入ext4分区，挂载为“/”。安装完成后自动重启，重启开机过程不进行人工干预可自动进入Ubuntu系统，即基于15-rMBP的Ubuntu to Go成功。完整关机后，再次冷启动开机，按option仅能找到Macintosh HD启动选项；但此时只要冷开机前插入了包含Ubuntu to Go的ChipFancier磁盘，则开机自动进入Ubuntu系统。简单的说，Ubuntu成为了默认引导选项，进入Mac OS X需要按option选择或移除Ubuntu磁盘。进入WinPE或者Windows to Go使用DiskGenius查看磁盘，可以在Macintosh HD的ESP分区找到Ubuntu的引导文件夹，即在ESP分区的EFI文件夹下有Apple和Ubuntu两个子文件夹。<br>结论为：单纯的Ubuntu to Go会将自身的引导文件写入Macintosh HD的ESP分区。且Ubuntu的引导顺序优先于Mac OS X。（由Ubuntu采用grub引导可以推论而言：grub的引导级别高于Mac OS X的UEFI。）</p>
+<p>03.在清空后的ChipFancier磁盘中建立完整Windows to Go，传统模式，勾选UEFI＋GPT，自动勾选重新分区，系统版本为cn_windows_10_enterprise_version_1511_x64_dvd_7224788.iso。（Windows 10 Version 1511即可，带有季度更新的也可以采用。）部署成功后在Macintosh上进行系统释放。然后在WinPE或Windows to Go下对磁盘进行如下操作，调整（缩小）系统主要文件所在C盘的大小，建立若干个（记为A个）大小在300MB至800MB的FAT16分区（注意是单纯的FAT16分区，分配盘符成为普通分区），将ESP分区的EFI文件夹提取出来，依次复制到上述的若干小容量FAT16分区中。Macintosh开机按option启动，可以找到A＋1个EFI Boot选项。即无论是否指向一个确切存在的操作系统，任意一套完整的FAT16分区下的EFI文件夹均可以被Macintosh识别为EFI Boot。<br>结论为：Macintosh可以识别任何一个FAT16分区下的EFI引导，无论该FAT16分区是否被转换为ESP分区，也不论该FAT16分区是在磁盘的前端还是中间。</p>
+<p>基于以上的结论，我提出如下的“基于15-rMBP和ChipFancier磁盘的三系统构建方案”。</p>
+<p>/*此方案粗测可以找到三个系统，但是三系统之间是否存在相互的影响和挟制及系统稳定性尚未进行试验和探究。所以目前仍然属于beta模式，请谨慎尝试，重要文件请及时备份。*/<br>/*因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*/</p>
+<p>00.操作之前请完整备份Macintosh HD的ESP分区，一旦操作失误导致引导被删除，恢复Mac OS X将是一个非常复杂的工程。<br>01.在ChipFancier中建立Windows to Go，VHD模式，勾选UEFI＋GPT，自动勾选重新分区，系统版本为Windows 10 Enterprise Version 1511以上或Windows 8.1 with Update以上。<br>02.在WInPE或Windows to Go中用DiskGenius提取ESP分区中的EFI文件夹及主分区中的vhd文件，复制备用。<br>03.在Mac OS X里用Ubuntu的官方工具做一个可启动U盘，作为Ubuntu to Go的安装磁盘，该磁盘在制作前需要格式化为FAT格式（FAT32和FAT16均可）。<br>04.Macintosh开机按option从Ubuntu的安装磁盘启动，选择EFI Boot启动后即插入ChipFancier磁盘，执行Ubuntu的安装过程，依据个人需要建立ext4分区，挂在为“/”，根据内存大小建立swap分区，Ubuntu装入ext4分区，安装安装提示完成Ubuntu to Go的安装。<br>05.在WinPE或Windows to Go中用DiskGenius在ChipFancier磁盘建立大小为350MB的FAT16分区，将02步骤中的EFI文件夹复制进该分区，剩余空间建立NTFS分区，将02步骤中得到的vhd文件复制进该分区，使用bootice验证FAT16格式小分区中的BCD文件。<br>/*如果反复失败，此处第05步骤可以更改为：在WinPE或Windows to Go中用DiskGenius在ChipFancier磁盘建立大小为350MB的ESP分区，将02步骤中的EFI文件夹复制进该分区，剩余空间建立NTFS分区，将02步骤中得到的vhd文件复制进该分区，使用BOOTICE验证FAT16格式小分区中的BCD文件。本操作依据为：Macintosh中Mac OS X的版本、Boot Camp Assist的版本、Macintosh中EFI固件的版本等Apple相关因素会影响FAT16分区的引导识别。*/<br>/*如果执行上述步骤仍然失败，则在ESP分区前先建立一个30MB的NTFS分区，再执行上述步骤，之后删除该30MB分区，即在Ubuntu to Go的swap分区和Windows to Go的ESP分区之间隔开30MB大小的空白区。本操作依据为：安装Windows的普通PC进行Ubuntu双系统安装时，Ubuntu安装程序会保留一个30MB的空白区域以防止Linux分区和Microsoft分区发生冲突*/<br>06.Macintosh开机按option从EFI Boot启动，完成对Windows to Go的系统释放。</p>
+<p>结果：Macintosh HD的ESP分区有Mac OS X和Ubuntu双系统的引导文件，ChipFancier中有Windows系统的引导文件。<br>01.Macintosh不插ChipFancier磁盘开机进入Mac OS X系统。<br>02.Macintosh插入ChipFancier磁盘开机不进行人工干预进入Ubuntu to Go系统。<br>03.Macintosh插入ChipFancier磁盘开机按option选择EFI Boot引导Windows to Go系统。</p>
+<p>/*注释行里写的可能写得有点吓人，因为在白盘下重装Mac OS X的操作较PC下的Windows重装极为复杂，同时多系统操作本身操作风险大，再次提醒，请谨慎操作。*/<br>/*本文为进阶操作，需要熟练的Windows to Go操作、Ubuntu to Go操作、DiskGenius磁盘操作技巧。*/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" data-id="ckh49wn4l00250gnra97t4l6l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          锤子科技Smartisan T2获取Root权限及Xposed框架安装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/%E8%AE%BA%E9%92%BB%E7%A0%94%E7%B2%BE%E7%A5%9E/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">论钻研精神</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

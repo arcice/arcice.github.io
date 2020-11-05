@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/6/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-macintosh下利用vmware虚拟机引导wtg系统教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-01-03T20:02:31.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/">Macintosh下利用VMware虚拟机引导WTG系统教程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近有一篇这样的帖子“求助！如何用mac下的虚拟机打开装在U盘的系统”（<a target="_blank" rel="noopener" href="http://bbs.luobotou.org/thread-17624-1-1.html%EF%BC%89%E5%BC%95%E8%B5%B7%E4%BA%86%E6%88%91%E5%BE%88%E5%A4%A7%E7%9A%84%E5%85%B4%E8%B6%A3%E3%80%82">http://bbs.luobotou.org/thread-17624-1-1.html）引起了我很大的兴趣。</a><br>我觉得有必要研究一下。说实话，好久没有想写个教程的冲动了。</p>
+<p>目前全网没有找到如何在Macintosh电脑上直接在MAC OS X或者macOS内直接测试Windows to Go系统效果的教程。Windows下的虚拟机可以直接挂载物理硬盘；但是Macintosh本身的磁盘管理是挂载即为（才为）连接，没有Windows下硬件连接但是不对磁盘（主要是指分区表位置）进行挂载的机制——你从Mac OS X或者macOS推出磁盘，其它所有Application都是无法接触磁盘内容的。这样一来，不要说挂载磁盘了，读取都是问题。我曾经强制在vbox下添加控制器（IDE SATA SCSI USB）并开启了host I/O，结果五国了。</p>
+<p>我的思路是这样的：<br>1.VMware有一个自带的功能：从Boot Camp导入虚拟机。<br>2.Windows to Go安装了Boot Camp Assist驱动之后，会被Mac OS X或者macOS识别为Boot Camp。<br>3.从VMware直接读取Windows to Go的系统，至于磁盘挂载，文件读取的事情，让Vware去干吧。</p>
+<p>设备：<br>电脑：Apple Macbook Pro 13.3 Retina 2015-early (MF840CH/A)<br>磁盘：CHIPFANCIER 128GB 2016<br>虚拟：VMware Fusion Pro 8.5.5（5192483）<br>系统：本机Mac OS X 10.11.6，WTG为Windows 8.1 Pro VOL</p>
+<p>操作：<br>1.制作一个UEFI＋gpt的传统模式Windows8.1及以上系统的Windows to Go。<br>2.在Macintosh上开机按option从Windows to Go启动，完成系统释放，并安装Boot Camp Assist驱动。<br>3.在Mac OS X或者macOS内安装VMware Fusion。<br>4.打开VMware，在虚拟机资源库左上角点击添加虚拟机，选择“从Boot Camp安装”。<br>5.选择你的Windows to GO磁盘，此时识别为BootCamp卷。<br>6.选择“创建Boot Camp虚拟机”，此操作会直接使用Boot Camp卷，即你的Windows to Go磁盘。<br>7.点击右下角“继续”。<br>8.此时会提示是否下载VMware Tools，这个是VMware虚拟机的驱动，建议下载，不下载页可以用，效果和不装驱动的Windows一样，而且非常卡。<br>9.点击右下角“继续”。<br>10.此时VMware会识别你Boot Camp即Windows to GO的系统版本并生成一套适合的配置信息。<br>11.可以按照其默认配置建立虚拟机，点击“完成”；也可以修改配置，点中间偏下的“自定设置”进入虚拟机设置。<br>/*一般而言默认配置较低，提供单核CPU和较小的运行内存，可以自定义分给VMware不超过系统总性能50%的配置。*/<br>12.启动虚拟机，完成系统释放：过程中会经历正在准备硬件——正在准备就绪——正在处理一些事情（测试系统为Windows8.1）。<br>13.可能需要重新激活你的系统。</p>
+<p>特别注意：<br>VMware才有从Boot Camp导入虚拟机的功能，vbox没有。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/" data-id="ckh49wn2d00110gnr3o869m8x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-苹果电脑安装windows操作系统的方法汇总" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" class="article-date">
+  <time datetime="2020-01-03T20:02:08.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/">苹果电脑安装Windows操作系统的方法汇总</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*本文涉及多系统多磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。对Macintosh HD分区的操作可能会受到Apple公司保修政策的限制，请慎重操作。对磁盘的操作可能会导致数据丢失，建议备份重要数据，病情谨慎操作。*/</p>
+<p>周围用苹果电脑的人越来越多，而Mac OS X又并不是容易上手，还有很多时侯离不开Windows操作系统，于是，如何在苹果电脑上安装Windows操作系统就成了一个非常棘手的问题。在苹果官方客服那里，安装费用很高，而且还需要自己提供Windows的购买凭证（真正的官方客服是不会给你装盗版系统的）。在此处，我总结了在苹果电脑上安装Windows操作系统的方法。</p>
+<p>安装Windows操作系统需要的基础准备工作<br>01.镜像，可以从Windows的订单界面得到电子版Windows操作系统；或者从Windows Insider下载界面得到；或者从msdn个人主页得到。<br>02.Boot Camp Windows Support软件的本质是苹果相应硬件的驱动程序和Boot Camp控制面板程序，以及Apple程序更新器。即，请在安装操作系统后关闭Windows Update中自动更新驱动程序的选项，否则可能大概率导致蓝屏。建议提前下载备用。<br>03.需要在PC上熟练安装原版Windows操作系统的操作经验。<br>04.所有预封装版GHOST版Windows操作系统GHO包均不可用。<br>05.请再三思考，你是否真的离不开Windows，是否能通过虚拟机技术使用Windows，是否必须要靠完整真实安装Windows来达到需求。</p>
+<p>一 通过Boot Camp助理安装Windows操作系统</p>
+<p>这种方法是苹果官方为Windows用户提供的双系统解决方案。优点在于官方支持，不涉及对磁盘的直接操作，不会影响保修，可以随时删除Windows分区。缺点在于安装过程缓慢，Mac OS X 10.11以后强制在安装过程中下载Windows Support，而且下载过程受服务器影响极其缓慢，同时，安装成功后不能对Windows系统所占磁盘空间比例进行修改。<br>该方法安装过程一般如下：打开Boot Camp助理，阅读协议后进入操作选项，苹果提供如下解决方案：<br>A.仅制作Windows安装介质，即将Windows的系统iso文件释放到USB磁盘中，制成可启动的Windows安装盘。<br>B.仅下载最新的Windows Support软件并存储到指定位置。<br>C.制作Windows安装介质并下载最新版的Windows Support软件，即将Windows的系统iso文件释放到USB磁盘中、同时下载最新的Windows Support软件到同一USB磁盘中。<br>D.安装Windows，即从刚刚制作的带有Windows Support软件的Windows安装介质启动并安装Windows；或者从之前制作好的USB安装介质中启动并安装Windows。<br>其中如果勾选“制作Windows”安装介质和“安装Windows”，则“下载Windows Support软件”是默认勾选的。<br>从Windows安装介质启动后，由Windows Installer（WindowsRE）完全控制硬件。1.选择语言、时区、输入法。2.阅读安装协议。3.进入分区选择界面，选中“BootCamp”分区，选择“格式化”选项。4.开始读条。5.自动重启后进入Windows环境，完成系统个性化设置和账户配置。6.进入Windows桌面，经“资源管理器”进入USB介质，安装Boot Camp Windows Support软件，按提示重启。7.输入激活密钥进行激活。至此，通过Boot Camp安装Windows操作系统的操作完成。</p>
+<p>窍门或者野路子：如果下载Windows Support软件的过程异常缓慢（Windows Support软件一共2.77GB，根据你的网速换算一下，如果提示剩余时间超过计算时间2倍，就算异常缓慢了），可以通过论坛、百度云、他人分享等方法获取Windows Support软件的文件夹，把WindowsSupport文件夹（这里的文件夹名称一般默认没有空格）下的所有文件（两个文件夹和一个文件）复制到Windows安装介质中。重新打开Boot Camp助理，即可直接选择“安装Windows”。这里所说的Windows安装介质，需要使用Boot Camp助理制作。即操作如下：<br>01.打开Boot Camp助理，阅读协议进入操作选项。<br>02.仅选择“制作Windows安装介质”，将Windows的iso镜像释放到USB磁盘中。<br>03.退出Boot Camp助理。<br>/*这里的Boot Camp助理务必完全退出，必要时使用“command＋option＋escape”快捷键调出“强制退出应用程序”菜单确认操作。*/<br>04.将“WindowsSupport”文件夹下的“$WinPEDriver$”和“BootCamp”文件夹、以及“AutoUnattend.xml”文件复制到02步得到的USB磁盘根目录下。<br>05.再次打开Boot Camp助理，阅读协议进入操作选项。<br>06.仅选择“安装Windows”进入磁盘比例划分界面。之后开始Windows系统安装。</p>
+<p>二 通过WindowsPE抹掉Mac OS X安装Windows操作系统</p>
+<p>这种方法属于将苹果电脑完全当作普通PC使用。优点是Windows可以占有全部的硬件资源。缺点是Mac OS X系统会被删除，同时驱动更新或系统重装相对麻烦。<br>01.在Mac OS X中进入Boot Camp助理，下载最新的Windows Support软件。如果开启了FileVault或者查找我的Mac请关闭。<br>02.制作基于USB的Windows安装环境，最简单的方法是使用WinRAR将iso文件解压到GPT分区表FAT32格式分区的U盘里。<br>03.开机按option，选择进入WindowsPE，使用DiskGenius删除内置磁盘所有分区，检查磁盘为GPT分区表，不要建立新分区。<br>04.完全关机，再次开机按command＋option＋p＋r键，清除NV缓存。<br>05.开机按option，选择从Windows安装磁盘启动，进入WindowsRE环境。<br>06.选择语言、时区、输入法，阅读安装许可协议。<br>07.进入分区选择界面，选择内置磁盘，新建默认大小分区，会自动建立ESP和MSR分区，之后根据个人需要调整Windows系统分区及后续分区大小。选择系统分区，开始安装。<br>08.读条后自动重启，进入系统个性化设置和账户设置。苹果电脑不建议直接建立MicrosoftID账户，建议建立本地账户绑定MicrosoftID。<br>09.进入桌面后，安装Boot Camp Windows Support软件，按提示重启。<br>10.输入激活密钥进行激活。<br>至此，通过WindowsPE抹掉Mac OS X安装Windows操作系统的操作完成。</p>
+<p>三 通过GHOST和wtga安装Windows操作系统</p>
+<p>/*以下内容尚属于beta阶段，仅能确定找到两个系统的引导路径。两系统间的扼制关系、挟制关系及系统稳定性等尚不能保障。属于深度技术探究，而非面向全网发布的成熟技术档案。不建议在您的工作计算机（主力计算机）上进行操作。*/</p>
+<p>这种方法的原理是手动构建指向Windows操作系统的EFI文件夹并通过GHOST完整将系统文件导入内置磁盘的工作；wtga作用是生成EFi文件夹和已经部署完毕的Windows磁盘文件。优点在于这种方法很有挑战性，如果你对自己“手动建立基于可移动磁盘UEFI＋GPT的VHD模式Windows to Go”技术有自信，并且喜欢挑战难度；或者像我一样是个技术疯子的话，欢迎尝试。缺点就是非常容易失败而且很折腾人，而且还需要一个已经存在的Windows环境。<br>01.在Mac OS X中进入Boot Camp助理，下载最新的Windows Support软件。如果开启了FileVault，务必关闭。<br>02.a.如果有移动硬盘、CHIPFANCIER磁盘或者其它识别为本地磁盘的盘，直接用wtga制作传统模式、UEFI＋GPT的wtg系统。<br>02.b.如果仅有可移动磁盘模式的盘，用wtga制作vhd模式、UEFI＋GPT的wtg系统。<br>03.a.用GHOST备份Windows系统分区。<br>03.b.挂载vhd文件，用GHOST备份vhd文件。<br>04.a.给wtg出的ESP区分配盘符。将EFI文件夹下的Boot和Microsft文件夹复制到内置磁盘的ESP区EFI文件夹下。<br>04.b.直接将EFI文件夹下的Boot和Microsft文件夹复制到内置磁盘的ESP区EFI文件夹下。<br>05.在内置磁盘建立新分区，用GHOST还原Windows系统分区。<br>06.修改ESP分区指向Windows操作系统的BCD文件，确保其指向正确。<br>07.选择语言、时区、输入法，阅读安装许可协议。系统个性化设置和账户设置。<br>08.进入桌面后，安装Boot Camp Windows Support软件，按提示重启。<br>09.输入激活密钥进行激活。<br>10.如果仅有可移动磁盘模式的盘，用wtga制作vhd模式、UEFI＋GPT的wtg系统。<br>至此，通过GHOST和wtga安装Windows操作系统的操作完成。</p>
+<p>四 完整GHOST批量安装Windows操作系统</p>
+<p>此方法适合批量操作，比如单位一次性购入大量苹果电脑。优点只有快。缺点只适用于大量同型号机器的安装。<br>01.还原Mac OS X的出场设置，消除所有个性化痕迹。<br>02.通过Boot Camp安装Windows操作系统。<br>03.对整个内置磁盘完整GHOST克隆。<br>04.使用WindowsPE作为媒介，对其他所有电脑进行GHOST还原操作。<br>05.还原后开机按command＋option＋p＋r键，清除NV缓存。<br>06.通过slmgr命令输入新的密钥激活系统。<br>至此，完整GHOST批量安装WIndows操作系统的操作完成。</p>
+<p>/*试用系统可以经过“MSDN，我告诉你”网站（<a target="_blank" rel="noopener" href="http://msdn.itellyou.cn)得到./*/">http://msdn.itellyou.cn）得到。\*/</a><br>/*建议的Windows10操作系统版本：cn_windows_10_enterprise_version_1607_updated_jul_2016_x64_dvd_9057083.iso*/<br>/*建议的Windows8.1操作系统版本：cn_windows_8.1_pro_vl_with_update_x64_dvd_6050873.iso*/<br>/*如计划试用基于KMS原理的激活工具进行系统激活，请下载vol版或Enterprise版系统。*/<br>/*仅供试用和操作体验，请尊重版权及发行协议，并于24小时内自觉删除。*/</p>
+<p>/*Windows及Windows to Go为Microsoft Corporation的（注册）商标，受到国际协议、美国法律和中国法律的共同保护，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于24小时内删除相关内容。*/<br>/*MacBook及Macintosh为Apple Inc.的（注册）商标，受到国际协议、美国法律和中国法律的共同保护，本文中所提到的所有Mac OS X系统进攻技术学习及试用，请尊重版权及原始发布协议，并请自觉于24小时内删除相关内容。*/<br>/*wtga作者为@nkc3g4，由@nkc3g4享有著作权，其知识产权受到国际协议和中国法律保护，试用、使用请遵守原始发布协议。*/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" data-id="ckh49wn71003j0gnreartfjdt" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-针对macintosh的多系统维护工具u盘构建方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-01-03T20:01:40.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">针对Macintosh的多系统维护工具U盘构建方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*本教程包含复杂的磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*/</p>
+<p>［前言］<br>但凡一个喜欢折腾电脑和操作系统的人都会用得到WindowsPE系统，而市面上的WindowsPE，要么自带OEM广告（比如老毛桃PE的GHOST操作会把360安全卫士装进去），要么过于精简使有些软件无法运行（我还没见过能运行wtga的WindowsPE，而且在已封装的WinPE里安装软件是几乎无法实现的）。而且我自己作为一个Macintosh用户，平时基本以Mac OS X为主要操作系统，偶尔还是会用到Windows和Ubuntu（以Ubuntu为代表的Linux，CentOS我也是会用到的）；市面上绝大多数的WinPE是不能满足我的维护需求的。于是我就萌生了构件多系统维护工具U盘的设想。</p>
+<p>［目标］<br>让一个U盘里同时有Windows、Mac OS X、Ubuntu的维护环境。<br>/*受限于Windows系统对于可移动磁盘分区和盘符的限制，这里的U盘推荐使用识别为本地磁盘的U盘。如果使用识别为可移动磁盘的U盘，请参照帖子的注释部分进行操作。同时进行Based System（这个系统可以类比WindowsRE来进行理解，即苹果系统的安装程序；但其内容和Windows安装程序相比更为丰富：包括基础的安装支持，也包括safari浏览器、磁盘工具等扩展应用程序。）后务必注意磁盘降温。*/</p>
+<p>［技术路线］<br>01.使用Windows to Go来代替WinPE，Windows to Go系统是完整的，可以任意运行工具软件，也可以任意安装软件（尤其是HFS+ for Windows这类的软件）。在此处我们需要一个可以手动调整引导的Windows to Go，而Macintosh又需要UEFI引导，所以，我们选择UEFI＋GPT引导的VHD模式进行Windows to Go的制作。操作后得到EFI文件夹和vhd文件，此步骤需要在U盘构建前进行，将文件备用。<br>02.使用Based OS作为Macintosh部分的维护环境。也可以直接使用Mac to Go。本文也将详细讲述Based System和Mac to Go的制作。特别是补充坛友dlh在Based System制作过程中的不详细叙述。<br>03.利用Ubuntu可以试用，甚至可以在光盘iso中完成试用的特点作为Linux部分的维护环境。这部分制作较为简单，使用官方推荐的Universal Installer（该软件即有Windows版本，又有Mac OS X版本。）即可完成；也可以使用量产工具降iso压入一个分区，将U盘做成多驱（Device）多启。</p>
+<p>［苹果Based System系统的构建］<br>关于如何建立Mac OS X安装U盘，网上有多种说法，基于Mac OS X自带的磁盘管理工具或者基于命令行的方案均有，但是其说法均不可靠，难以一次性成功，且网上直接复制的方法仅适用于从Mac App Store下载安装app后不尽兴任何的更改（包括不移动其存储位置且不修改名称）方可实现。需要系统降级或者需要测试版系统的用户并不适用。在这里，我整理了一份详细方案。我的方案基于终端命令行，如果你手头有一个app文件，无论其存储位置如何，其操作方案如下。<br>01.在Mac OS X自带的磁盘管理工具中，抹掉目标磁盘，新建基于GUID分区表的Mac OS 扩展（日志式）分区，分区命名需为英文，否则容易报错。/*此处我们假设新分区命名为“USB”*/<br>02.退出磁盘管理及其它设计磁盘和分区操作的软件，必要时使用“command＋option＋escape”快捷键调出“强制退出应用程序”菜单确认操作。<br>03.找到安装系统的app文件，右键选择“显示包文件”，在“/Contents/Resources”地址下找到“createinstallmedia”文件。<br>04.打开“终端”，并输入以下内容：/*下列所以的输入操作中，敲入的字符均仅包含引号内的内容，不包含引号*/<br>04.01.输入“sudo”<br>04.02.空格<br>04.03.使用鼠标拖拽“createinstallmedia”文件到终端窗口内，终端中自动转换为指针（文件地址）<br>04.04.输入“–volume”/*注意这里是两条连字符*/<br>04.05.空格<br>04.06.使用鼠标拖拽桌面的USB磁盘图标到终端窗口内，终端中自动转换为指针（目录地址）<br>04.07.输入“–applicationpath”/*注意这里是两条连字符*/<br>04.08.空格<br>04.09.使用鼠标拖拽安装系统app（比如“Install Yosemite.app”或者“安装Yosemite.app”）到终端窗口内，终端中自动转换为指针（文件地址）<br>04.10.输入“–nointeraction”/*注意这里是两条连字符*/<br>04.11.敲回车，此时提示输入密码<br>04.12.输入密码，输入过程中没有星号提示也不会显示出密码字符<br>05.完成上述操作后终端会开始“读条”，之后再次提示开始制作，最后终端窗口中出现新的命令输入窗口，操作结束。<br>06.为了方便开机选择启动位置，可以进行“美化”操作：<br>06.1.右击制作好的安装磁盘，选择“显示简介”<br>06.2.打开制作好的安装磁盘，磁盘内有安装系统app（比如刚才的“Install Yosemite.app”或者“安装Yosemite.app”）/*并非磁盘中仅有该文件，该文件为正常显示，其它文件为隐藏文件*/<br>06.3.拖拽安装系统app文件至06.1.简介中的左上角，替换磁盘图标。此时，安装磁盘的图标变为安装系统app的图标。</p>
+<p>［苹果Mac to Go系统的构建］<br>Mac OS X可以安装在任何一个识别为本地磁盘的设备上，USB闪存、USB移动硬盘、ThunderBolt接口均可。安装过程和Mac OS X更新过程完全一致。仅在安装前需要手动建立分区。在菜单栏中有“实用工具”选项，其下有“磁盘工具”，使用Based System中的磁盘工具，在目标位置中建立Mac OS 扩展（日志式）分区，即可安装。当然，盘越快，体验越好。经过测试CHIPFANCIER是可以实现Mac to Go的，其使用体验优于内置机械磁盘的Macintosh，劣于内置PCI-E接口固态硬盘的Macintosh。</p>
+<p>［多系统维护工具U盘构建］<br>因为Mac to Go制作完成后基本不具有可移动性，仅可在完全同型号的Macintosh电脑上启动，所以我更建议使用Based System作为Macintosh的维护系统，其包含完整的safari浏览器、终端命令工具、磁盘管理工具和启动管理。<br>01.按照［苹果Based System系统的构建］部分的提示，在U盘中建立Based System。<br>02.在磁盘管理中调整Based System分区大小，设定其大小为允许的最小值。<br>03.使用磁盘管理，在U盘剩余空间中建立MS-FAT格式分区。<br>/*如果希望使用完整的Mac OS X作为苹果维护环境，可以按照［苹果Mac to Go系统的构建］中提示安装完整Mac OS X系统，安装完成后等U盘冷却，进入Windows环境，使用DiskGenius进行Mac分区调整。*/<br>04.进入Windows环境，使用DiskGenius，将03.步骤中新建的分区进行调整，使之成为：一个350MB的FAT16格式分区，一个NTFS格式大分区，一个1GB的FAT32格式分区。<br>05.将wtga生成的EFI文件夹复制到350MB的FAT16格式分区中，vhd文件复制到NTFS格式大分区中。<br>/*如果所用磁盘为可移动磁盘，则分区顺序为：Based System分区，Windows vhd所在的NTFS分区，作为ESP存在的FAT16分区，预设的安放Ubuntu的分区。建立Based System后，按照上述顺序建立分区，在资源管理器中将vhd文件拷贝到NTFS分区；使用DiskGenius将EFI文件夹导入FAT16分区。*/<br>06.修改EFI文件夹下的BCD文件，使引导对应成立。<br>07.使用官方推荐的Universal Installer进行Ubuntu的安装。<br>/*如果所用磁盘为可移动磁盘，则Ubuntu的安装需要进入Mac OS X，使用Universal Installer进行指向分区的安装。*/<br>至此，该U盘中包含有苹果的Based System维护环境，包含Windows to Go作为微软维护环境，包含Ubuntu作为Linux维护环境。</p>
+<p>/*Windows及Windows to Go为Microsoft Corporation的（注册）商标，受到国际协议、美国法律和中国法律的共同保护，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于24小时内删除相关内容。*/<br>/*MacBook及Macintosh为Apple Inc.的（注册）商标，受到国际协议、美国法律和中国法律的共同保护，本文中所提到的所有Mac OS X系统进攻技术学习及试用，请尊重版权及原始发布协议，并请自觉于24小时内删除相关内容。*/<br>/*Ubuntu采用GPL协议发布，受到国际协议的保护，请尊重原是发布协议，使用即修改该项目的代码请遵守GPL协议。*/<br>/*wtga作者为@nkc3g4，由@nkc3g4享有著作权，其知识产权受到国际协议和中国法律保护，试用、使用请遵守原始发布协议。*/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" data-id="ckh49wn8e004b0gnrddh8azk0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-锤子科技smartisan-t2获取root权限及xposed框架安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-01-03T20:01:14.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/">锤子科技Smartisan T2获取Root权限及Xposed框架安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在最前面：Smartisan及Smartisan为锤子科技知识产权；Android为Google公司知识产权；相关应用的知识产权属于其开发着所有。本文涉及到的应用及ROM包仅供技术提升和试用，请在下载后24小时内自动删除。本帖仅就获取Root权限及安卓Xposed框架的操作进行研究及探讨，由此带来的手机“变砖”、数据丢失等损失由操作者本人负责，本人不承担责任。本帖属于萝卜头IT论坛的深度技术探究，而非面向全网发布的成熟技术档案。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。本文仅授权萝卜头IT论坛及本人个人博客独家发行，不授权给任何其他论坛、社区、网站、个人博客（包括但不限于锤子科技论坛、机锋、安智论坛及所有刷机软件对应的网站及论坛）。无论个人组织、无论私用商用，均严禁以任何形式转载。</p>
+<p>锤子科技对于Smartisan T2的管理一直类似于苹果对于iOS的方式：不开放Root权限，不开放BootLoader，不开放FastBoot，不开放DFU的开发环境和或愈语法规则，同时Recovery模式由官方版锁定。由此一来使用Root软件因为手机市场占有率过低没有公司和或工作组适配，卡刷二进制文件被官方Recovery阻挡。简单的说：获取Smartisan OS Based on Android Root权限的操作越来越像iOS的越狱，需要寻找漏洞。</p>
+<p>我自己的研究方向一直在应用商店的Google安装器上，一般的国产安卓手机需要谷歌服务框架时，需要一个Google安装器，该软件的运作需要Root权限，即将相关的文件夹及apk文件直接写入/System文件夹。Smartisan OS自身是不包含谷歌服务框架的，应用商店内提供一个“锤子特供”的Google安装器，该安装器不需要Root权限但是能完成/System树的操作，也就是说，Smartisan OS是包含隐藏Root权限的，会根据需要分配给需要较高权限的应用。而这个过程是完全隐藏的，在使用DeBloater进行系统分析时，存在一个antiRoot.apk的应用，同时存在一系列和权限（Rights）管理相关的应用，这一系列高级权限管理机制是被特殊保护的。简单的说：想要获取Smartisan OS的Root权限，需要找到保护（也就是隐藏）最薄弱的环节进行漏洞攻击。</p>
+<p>参考锤子科技官方论坛casonggk的描述［（作大死）T2降级root，安装xposed教程 <a target="_blank" rel="noopener" href="http://bbs.smartisan.com/thread-378672-1-1.html">http://bbs.smartisan.com/thread-378672-1-1.html</a> (出处: 锤子科技官方论坛)］，Smartisan OS v2.6.2 for T2包含一个可以用来获取Root权限的漏洞。</p>
+<p>我的操作过程如下：<br>00.下载所有所需软件的apk包和手机ROM包。待用。<br>01.清除Smartisan已有或已打开的文件保护类设置，比如安全中心——高级——加密手机选项，比如Smile Cloud（欢喜云）的查找手机选项，该过程可能需要还原出厂设置。<br>02.将Smartisan OS 2.6.2的zip完整卡刷包放入/sdcard目录（即外部存储空间根目录，或称为SD卡根目录）。<br>03.完整关机，按左侧向上辅助键＋右侧向下辅助键＋Home/Power键，出现黑背景下银白色的锤子科技logo（就是那个T形的锤子）即松开所有按键。手机进入REC模式（Smartisan Recovery）。<br>04.使用右侧的上下方向辅助键，让高亮条选中“Apply Update From SDcard”，按Home/Power键进入第二级菜单；使用同样方法选择“/0”，进入三级菜单；使用同样方法选择卡刷包，其默认名称为“2.6.2-2016041523-user-is-c-2157500e.zip”进入四级菜单；此时选项为多个no和一个yes-Update From SDcard，选择yes，开始卡刷。手机会降级至Smartisan OS 2.6.2。/*本步骤中的二三四级菜单并非严格的多级tree目录，可以理解为第二三四小步骤*/05.卡刷降级结束后双清。使用04步骤中的方法以此选择“Wipe Data/Factory Reset（Wipe Data/Factory Partition）”和“Wipe Cache Partition”。完成双清。<br>06.选择“Reboot System Now”重启手机，按照提示完成设备激活和语言等基础设置。此时注意，不要登陆Smile Cloud（欢喜云）账户。进入设置——关于本机，点按五次Smartisan OS版本激活开发者选项，进入设置——全局高级设置——开发者选项，打开USB调试。<br>07.Smartisan OS默认没有文件管理器，只有一个AirDroid可以暂时当作文件管理器来用。我先在Airdroid下安装了ES文件管理器。然后以ES管理器为基础安装了KingRoot。/*此处个人建议先将所需的apk文件全部下载好备用，同时操作前想卡刷包放入SD卡根目录，一旦出现问题可以直接进入REC模式回到出厂化的Smartisan OS回到非Root环境中*/<br>08.用KingRoot获取手机Root权限。Root后进入KingRoot自带的权限管理器，会发现一个系统应用申请Root权限，管理器采取的是询问操作，手动对其授权。该系统应用既可能为中文名称，也可能为英文名称，图标为蓝色圆形。<br>09.安装SuperSU，完成后不要打开应用，安装SuperSU PRO的增量包。安装后打开SuperSU，提示更新二进制文件，选择取消，提示关注Twitter或GooglePlus，选择暂不关注。进入KingRoot权限管理器，检查对SuperSU Pro授权（默认是授权的，但需要检查）。<br>10.安装SuperSUme Pro。打开应用，自检提示框消失后，按屏幕上唯一的巨大蓝色按钮，KingRoot管理器弹提示窗询问，选择授权。此时系统弹窗询问是否痛过调试安装k4rhelper，选确认/允许。SuperSUme Pro读条，之后自动退出。<br>11.再次打开SuperSUme Pro，提示进行第二阶段操作，再次按屏幕上那个大按钮，此时系统弹窗询问是否允许通过调试安装SuperSU，选确认/允许。然后SuperSU弹窗询问，选择授权，SuperSUme Pro再次读条。之后退出。<br>12.打开SuperSU Pro，提示更新二进制文件，选更新，模式选择传统/一般。弹窗显示正在更新，小圈圈开始转，之后提示有冲突的授权管理软件是否卸载，选卸载。提示更新完成，根据提示重启。<br>13.安装FireFlash，通过SuperSU Pro授权。点AGREE同意许可协议，按NO THANKS不关注Twitter或GooglePlus。按右下角加号，选择倒数第二个“Flash ZIP or OTA”，选择已经下载好的Xposed卡刷包，取消勾选“Mount /System read/write”，点闪电标志的Flash开始软卡刷，系统会重启进入虚拟REC环境，之后再次重启回到桌面。<br>14.安装Xposed Installer，重启激活Xposed框架。<br>至此操作完成。</p>
+<p>至于为什么要获取Root权限，主要为了卸载预装的触宝输入法和搜狗输入法，以及内建的应用商店和游戏中心。出于我对于国内安卓环境应用的极度不信任，和BAT系厂商对权限的无限制攫取，我选择放弃保修获取Root权限。如果你对于保修有执念或者担心变砖无法挽救（国内修手机的很少有会接锤子活的，如果是个人Root操作，官方也不予保修），请使用原版Smaartisan OS。如果同时希望拥有保修又想禁用自带软件，请使用DeBloater进行Hide操作而不是获取Root权限后的卸载操作。</p>
+<blockquote>
+<p>本次操作所用到软件版本号为：Smartisan OS：2.6.2-2016041523-user-is-c02157500e.zip 下载地址见锤子科技论坛相关帖子。<br>KingRoot：NewKingrootV4.9.6_C151_B296_office_release_2016_08_03_105003.apk<br>SuperSU：SuperSU-2.76_Final.apk<br>SuperSU Pro：SuperSU Pro-2.76.apk<br>SuperSUme Pro：Super-Sume Pro 9.1.8.apk<br>FireFlash：eu.chainfire.flash-0.52-52.apk<br>Xposed卡刷包：xposed-v86-sdk22-arm64<br>Xposed Installer：XposedInstaller_3.0_alpha4.apk</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/" data-id="ckh49wn8i004d0gnr9zqp0y7w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-基于15-rmbp和chipfancier磁盘的三系统构建方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-01-03T20:00:32.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/">基于15-rMBP和ChipFancier磁盘的三系统构建方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*本文涉及多系统多磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。*/<br>/*Ubuntu采用GPL协议发布，使用即修改该项目的代码请遵守GPL协议。*/<br>/*Windows及Windows to Go为Microsoft公司的（注册）商标，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于24小时内删除相关内容。*/<br>/*对Macintosh HD分区的操作可能会受到Apple公司保修政策的限制，请慎重操作。*/<br>/*对磁盘的操作可能会导致数据丢失，建议备份重要数据，病情谨慎操作。*/<br>/*本构件方案尚属于beta阶段，仅能确定找到三个系统的引导路径。三系统间的扼制关系、挟制关系及系统稳定性等尚不能保障。不建议在您的工作计算机（主力计算机）上进行操作。*/<br>/*本帖属于萝卜头IT论坛的深度技术探究，而非面向全网发布的成熟技术档案。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*/</p>
+<p>前些日子，站长nkc3g4发布了Ubuntu to Go和Ubuntu＋Windows双系统to Go的教程；因为工作中某些统计分析软件没有Mac OS X兼容的版本（CrossOver和Wine软件是不能兼容和调用包含多个加载库的软件包的，会导致各种“dll丢失”、“软件在此兼容性设置下无法运行”等错误），同时又需要Linux环境对部分软件（比如R语言）回报结果进行二次验证；双系统to Go就成为一个很好的选择；再加上手头有一个CHIPFANCIER磁盘，一个识别为本地磁盘的USB-SSD。就开始了一系列折腾。</p>
+<p>首先就我折腾的过程来说说。</p>
+<p>为了防止混淆，Mac系统表述为Mac OS X，Mac电脑表述为Macintosh，Mac系统所在的内置“固态硬盘”表述为Macintosh HD。<br>已有的Windows to Go是建立在SK6221本地磁盘上的Windows to Go，传统模式，UEFI＋GPT，系统版本为cn_windows_8.1_professional_vl_with_update_x64_dvd_4050293.iso。<br>已有的WinPE是建立在Corsair Survivor 32GB上的杏雨梨云USB维护系统。</p>
+<p>01.在Mac OS X里用Ubuntu的官方工具做一个可启动U盘，所用的磁盘为Sandisk CZ73，为一个不可量产的可移动磁盘，作为Ubuntu to Go的安装磁盘；在制作过程中发现：如果磁盘格式化为NTFS格式，则Macintosh开机按option启动找不到该U盘的引导选项；如果把磁盘格式化为FAT32格式，则Macintosh开机按option启动可以找到一个EFI Boot选项；上述结果不受磁盘分区表的影响，GPT分区表和MBR分区表结果不变。<br>结论为：Macintosh仅可以识别FAT32或FAT16（ESP分区的本质是FAT16格式分区）格式的引导分区。</p>
+<p>02.Macintosh开机按option从Ubuntu的安装磁盘启动，选择EFI Boot启动后即插入ChipFancier磁盘，执行Ubuntu的安装过程，按照缺省提示建立相应的ext4和swap分区，两个分区占据整个ChipFancier磁盘，即仅安装Ubuntu to Go，Ubuntu安装入ext4分区，挂载为“/”。安装完成后自动重启，重启开机过程不进行人工干预可自动进入Ubuntu系统，即基于15-rMBP的Ubuntu to Go成功。完整关机后，再次冷启动开机，按option仅能找到Macintosh HD启动选项；但此时只要冷开机前插入了包含Ubuntu to Go的ChipFancier磁盘，则开机自动进入Ubuntu系统。简单的说，Ubuntu成为了默认引导选项，进入Mac OS X需要按option选择或移除Ubuntu磁盘。进入WinPE或者Windows to Go使用DiskGenius查看磁盘，可以在Macintosh HD的ESP分区找到Ubuntu的引导文件夹，即在ESP分区的EFI文件夹下有Apple和Ubuntu两个子文件夹。<br>结论为：单纯的Ubuntu to Go会将自身的引导文件写入Macintosh HD的ESP分区。且Ubuntu的引导顺序优先于Mac OS X。（由Ubuntu采用grub引导可以推论而言：grub的引导级别高于Mac OS X的UEFI。）</p>
+<p>03.在清空后的ChipFancier磁盘中建立完整Windows to Go，传统模式，勾选UEFI＋GPT，自动勾选重新分区，系统版本为cn_windows_10_enterprise_version_1511_x64_dvd_7224788.iso。（Windows 10 Version 1511即可，带有季度更新的也可以采用。）部署成功后在Macintosh上进行系统释放。然后在WinPE或Windows to Go下对磁盘进行如下操作，调整（缩小）系统主要文件所在C盘的大小，建立若干个（记为A个）大小在300MB至800MB的FAT16分区（注意是单纯的FAT16分区，分配盘符成为普通分区），将ESP分区的EFI文件夹提取出来，依次复制到上述的若干小容量FAT16分区中。Macintosh开机按option启动，可以找到A＋1个EFI Boot选项。即无论是否指向一个确切存在的操作系统，任意一套完整的FAT16分区下的EFI文件夹均可以被Macintosh识别为EFI Boot。<br>结论为：Macintosh可以识别任何一个FAT16分区下的EFI引导，无论该FAT16分区是否被转换为ESP分区，也不论该FAT16分区是在磁盘的前端还是中间。</p>
+<p>基于以上的结论，我提出如下的“基于15-rMBP和ChipFancier磁盘的三系统构建方案”。</p>
+<p>/*此方案粗测可以找到三个系统，但是三系统之间是否存在相互的影响和挟制及系统稳定性尚未进行试验和探究。所以目前仍然属于beta模式，请谨慎尝试，重要文件请及时备份。*/<br>/*因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*/</p>
+<p>00.操作之前请完整备份Macintosh HD的ESP分区，一旦操作失误导致引导被删除，恢复Mac OS X将是一个非常复杂的工程。<br>01.在ChipFancier中建立Windows to Go，VHD模式，勾选UEFI＋GPT，自动勾选重新分区，系统版本为Windows 10 Enterprise Version 1511以上或Windows 8.1 with Update以上。<br>02.在WInPE或Windows to Go中用DiskGenius提取ESP分区中的EFI文件夹及主分区中的vhd文件，复制备用。<br>03.在Mac OS X里用Ubuntu的官方工具做一个可启动U盘，作为Ubuntu to Go的安装磁盘，该磁盘在制作前需要格式化为FAT格式（FAT32和FAT16均可）。<br>04.Macintosh开机按option从Ubuntu的安装磁盘启动，选择EFI Boot启动后即插入ChipFancier磁盘，执行Ubuntu的安装过程，依据个人需要建立ext4分区，挂在为“/”，根据内存大小建立swap分区，Ubuntu装入ext4分区，安装安装提示完成Ubuntu to Go的安装。<br>05.在WinPE或Windows to Go中用DiskGenius在ChipFancier磁盘建立大小为350MB的FAT16分区，将02步骤中的EFI文件夹复制进该分区，剩余空间建立NTFS分区，将02步骤中得到的vhd文件复制进该分区，使用bootice验证FAT16格式小分区中的BCD文件。<br>/*如果反复失败，此处第05步骤可以更改为：在WinPE或Windows to Go中用DiskGenius在ChipFancier磁盘建立大小为350MB的ESP分区，将02步骤中的EFI文件夹复制进该分区，剩余空间建立NTFS分区，将02步骤中得到的vhd文件复制进该分区，使用BOOTICE验证FAT16格式小分区中的BCD文件。本操作依据为：Macintosh中Mac OS X的版本、Boot Camp Assist的版本、Macintosh中EFI固件的版本等Apple相关因素会影响FAT16分区的引导识别。*/<br>/*如果执行上述步骤仍然失败，则在ESP分区前先建立一个30MB的NTFS分区，再执行上述步骤，之后删除该30MB分区，即在Ubuntu to Go的swap分区和Windows to Go的ESP分区之间隔开30MB大小的空白区。本操作依据为：安装Windows的普通PC进行Ubuntu双系统安装时，Ubuntu安装程序会保留一个30MB的空白区域以防止Linux分区和Microsoft分区发生冲突*/<br>06.Macintosh开机按option从EFI Boot启动，完成对Windows to Go的系统释放。</p>
+<p>结果：Macintosh HD的ESP分区有Mac OS X和Ubuntu双系统的引导文件，ChipFancier中有Windows系统的引导文件。<br>01.Macintosh不插ChipFancier磁盘开机进入Mac OS X系统。<br>02.Macintosh插入ChipFancier磁盘开机不进行人工干预进入Ubuntu to Go系统。<br>03.Macintosh插入ChipFancier磁盘开机按option选择EFI Boot引导Windows to Go系统。</p>
+<p>/*注释行里写的可能写得有点吓人，因为在白盘下重装Mac OS X的操作较PC下的Windows重装极为复杂，同时多系统操作本身操作风险大，再次提醒，请谨慎操作。*/<br>/*本文为进阶操作，需要熟练的Windows to Go操作、Ubuntu to Go操作、DiskGenius磁盘操作技巧。*/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" data-id="ckh49wn4l00250gnra97t4l6l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-论钻研精神" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E8%AE%BA%E9%92%BB%E7%A0%94%E7%B2%BE%E7%A5%9E/" class="article-date">
+  <time datetime="2020-01-03T19:59:57.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E8%AE%BA%E9%92%BB%E7%A0%94%E7%B2%BE%E7%A5%9E/">论钻研精神</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>我们都曾经是菜鸟，都曾经是小白。</p>
+</blockquote>
+<p>我第一次接触电脑还是学校的计算机课程。那时候计算机课程是相对高大上的学校才会有的课程。那时的我，怀揣着学习先进技术的憧憬和对非考试科目的不屑走进计算机房。所谓的上课无非是打字和画图。记得全班打字比赛，只要打完一屏字母就可以积1分，学期末，全年级所有人里，我1分也没有。那个时候也不觉得丢脸，就像体育课挂科一样，不会影响升级、毕业、证书和先进评比。</p>
+<p>那时候主机还会横在显示器下边，软盘结构还是重点知识，操作系统是windows 3.1，7张软盘可以装下整个操作系统，隐约记得有一个图标叫“资源管理器”。那个时候，我连菜鸟都算不上，只是一个文盲，一个连基本的人机交互都做不了的人。不曾幻想自己会在计算机方面有多大发展，更不会想象到计算机会主宰生活，互联网会统治世界。</p>
+<p>后来，有第一台个人电脑。方正台式机，奔腾4处理器，256MB内存，80GB硬盘，雨林木风ghost xp sp2系统。我就在这台机器上懂得了什么是操作系统，什么是应用软件，什么是驱动程序，什么是病毒，什么是杀毒软件。记得有一次C盘满了，我删掉了几户所有打不开的“垃圾文件”，然后电脑和废了差不多。还有一次同时装了两个杀毒软件，然后电脑卡死了。那时候互联网还是要买上网时长卡的，是少数人玩得起的奢侈品。那个时候偶尔会玩玩游戏，三国群英传是唯一有印象的了。其他时候，我就默默一个人做幻灯片。</p>
+<p>再后来，有了自己的笔记本，海尔的样机，酷睿2双核处理器，英伟达GT105的显卡，320GB硬盘，2GB DDR2内存。这台机器应该是陪我时间最长的机器了，在这台机器上，我默默学会了word排版，学会了一大把excel公式，学会了做静态网页，学会了一手熟练的手动ghost。在这台机器上，我学到了其实是最基础的知识，还有最基础的软件。记得最清楚的应该就是ghost，多少次抹掉了全盘的数据，记得多少次重装系统。</p>
+<p>在那之后，还用过一台dell的笔记本，那是硬件突进的时代。usb3.0横空出世，UEFI的普及，win8的发布，64位系统的普及，64位软件的推广，ssd的发展。曾经熟悉的一切都消失了，光驱逐渐消失，ghost不再占有一席之地，xp时代基于权限混乱的“技术”和操作方法完全没有用武之地。这个阶段，开始学着升级硬件，学一些占资源的软件，进而虚拟机，黑苹果，开始了一个“折腾狂人”的虐机历程。才装完的系统因为“优化”失误推倒重来，boot参数错误导致三系统全部重装，数据恢复不成反而把现有数据覆盖，排版一个非常大的文件死机一下午白干，装一个visual studio把系统装塌了，玩病毒样本没隔离全盘染毒，想换块硬盘把sata线扯断了一星期用不了电脑，类似的磕磕绊绊几乎每星期都上演。但，这应该是我“技术”成长最快的阶段，每一次“血的教训”都宣示着经验的增长，每一次“欲哭无泪”都昭示着技术的进步。终于，面对一些同龄人口中所谓的“疑难杂症”，我开始能够自己解决。终于，人们不再忽略我的电脑水平。终于，同学知道修电脑其实也可以找我。</p>
+<p>从接触计算机，到面对基础使用问题的“独当一面”，整整13年。直到这个时候，不再被同学讥讽为菜鸟，不会因为不会打字而被嘲笑。但是，我不会忘记、不应忘记、也不能忘记那些为了热爱而进行的折腾。而这种“折腾”，本质上是一种钻研。引用一个被中考高考玩坏了的例子，爱迪生是在N种材料后才发现钨丝的。可能从技能提升后的角度看来，当年所做的很多都是完全浪费时间的无用功，但是不要忘了，是那些看起来幼稚甚至卑微的技术积累达到了目前的高度。引用一段被“成功学”学者们嗤之以鼻的“心灵砒霜”来说，我们今天所奉行的奉为神旨的“科学的方法”，是艾萨克牛顿在研究“炼金术”时所使用的方法。</p>
+<p>其实说这么多，只是有感而发。百度C语言吧的吧规，远景论坛黑苹果专区的顶置帖，广泛转发的《提问的艺术》，nk的“不要回复教程帖”的公告。读完这一切，开始会觉得不近人情，会觉得小圈子化严重，但现在来想，就是在培养这种计算机界不可或缺的“折腾”技术和钻研精神。</p>
+<p>在刚刚接触Windows to Go的时候，我也是一头雾水，只是想尽快找到一种成熟的方法，至少能在mac上外接一个windows系统出来。我的第一篇帖子，是爬了四个半天论坛和运行了66次wtga之后在出来的，我不会忘记这个数字，因为整整6天，66次，是这些“吉利”的数字才打磨出了一篇精品新人帖。SD卡那篇，是连个晚上加两宿。U盘那三部曲，尤其是15-rMBP和可移动磁盘配合的教程，是另外的50+次，另外的好几个夜晚。</p>
+<p>每一个神一般人物的诞生都是无尽的努力，ykl2001的U盘对比帖不就是不断的积累么。nk的wtga不更是如此么，我在GitHub上下载了wtga的源码，虽然看不太好，但是现在的代码和oldcodes对比，不就是重写么。</p>
+<p>我写这个东西，完全是有感而发，也包含着对“论坛代有人才出”的希冀，当然，也有对“伸手党”的毫无力量的“口诛笔伐”。我不是站长，甚至不知道nk到底是个什么样的家伙，但是我对WTG，我对论坛有的只有一份热爱。我们来这里，不就是为了一份技术的收获，同时，收获的还有一份不知对方身份却仍然牵挂和思念的“特别”的友谊。我们都曾是菜鸟，都曾是小白，但只要肯去钻研，都会有所收获，不是么。这个东西是一气呵成打出来的。然而打完来看，文笔早已不如当年。我也是曾写过高考满分作文的考生，现在看来，高中学的东西都已是过眼云烟，随风而去了。</p>
+<blockquote>
+<p>开始的开始，我们都是孩子，最后的最后，渴望变成天使。歌谣的歌谣，伴着童话的影子，孩子的孩子，该要飞往哪去。</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E8%AE%BA%E9%92%BB%E7%A0%94%E7%B2%BE%E7%A5%9E/" data-id="ckh49wn7h003s0gnr1bz0bkcp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-15款mbp在可移动磁盘wtg的注意事项" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8%E5%8F%AF%E7%A7%BB%E5%8A%A8%E7%A3%81%E7%9B%98wtg%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="article-date">
+  <time datetime="2020-01-03T19:59:04.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8%E5%8F%AF%E7%A7%BB%E5%8A%A8%E7%A3%81%E7%9B%98wtg%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">15款MBP在可移动磁盘WTG的注意事项</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近一直有人在质疑我的这篇《15款MBP在U盘WTG解决方案》的帖子，尤其是可移动磁盘的部分。质疑是无可非议的，毕竟帖子缺失有很多含混不清的地方，有很多细节也没有说明。为正视听，也为了解决这个悬而未决的问题，今天专门发出这篇帖子，讨论15款MBP在可移动磁盘的注意事项。</p>
+<p>关于15款MBP在可移动磁盘WTG的讨论</p>
+<p>00.请注意，15-mbp只支持UEFI启动。下文中如果没有特殊说明，Mac均指15款MBP，wtga均是wtga_3310。<br>01.在进行WTG之前，我们需要了解UEFI的现状和windows的启动过程。Windows8之后，微软启用了对UEFI的支持，并且在Microsoft UEFI中加入的Secure Boot选项，并且强制所有OEM厂商开启Secure Boot，虽然处于反垄断法的压力微软要求Secure Boot选项可以关闭，但是确实存在有的厂家拒绝提供关闭Secure Boot的选项。同时形成了一个事实，所有的Microsoft UEFI Boot公钥均掌握在微软，这代表着微软完成了在预装windows系统的OEM_PC中的引导垄断，这就使得微软可以将自己的Windows操作系统提前到UEFI模块启动的同时启动，也就是将寻址引导和系统加载同时进行。这个表现为，我们在可以看到，厂商logo在上、Windows加载圆圈同时在下面转的场景。在这种显示状态下，UEFI（硬件／机制／指令集）的启动完成，BCD文件的寻址引导开始，同时还加载并运行了WindowsRE。这个WindowsRE包含了启动修复，系统还原，完整还原，Windows诊断工具，命令提示符五个功能部分，而且WindowsRE的权限为最高的system权限。参照微软官方的说明，如果想将Windows部署到基于UEFI的电脑，Windows的分区要求为：WindowsRE工作分区，系统分区，Microsoft保留分区，其他应用程序分区。而在Mac下，苹果与微软达成共识，通过苹果的Boot Camp引导Windows系统。如果你曾经安装过Boot Camp Windows，你会发现，磁盘被分为五个区：ESP（引导分区），Macintosh（苹果Mac OS X系统），WinRE，Boot Camp Windows（Windoes系统），Based System（苹果恢复系统）。说这么一大堆，我要表达的是，Windows在UEFI模式下启动必要条件是ESP中的BCD指向和WinRE的正常加载。这意味着一定不能勾选“禁用WinRE”。<br>02.关于可移动磁盘性质的U盘，对于U盘，@ykl2001 比我更熟悉，也和他问过很多U盘的知识。现在可以确定，有几款sandisk的U盘是不能WTG的，以cz48为代表。这里要说明的是，不是所有U盘都可以进行WTG。<br>03.可移动磁盘的特性，Windows下只能识别第一个分区（hd0），只能给第一分区生成盘符，只能对第一分区的文件进行操作。wtga在可移动磁盘下不能勾选UEFI＋pgt的选项。所以，我们采取了自建ESP分区和把ESP分区后置的方法，可以随时对VHD文件进行操作，同时wtg系统启动后，未占用的空间会形成D盘。<br>04.关于磁盘分区表的模式。如果磁盘选择了gpt模式，在wtga的工作过程中会自动生成EFI文件夹；如果磁盘选择了mbr模式，在wtga的工作工程中只会生成一个Boot文件夹。这意味着，在wtga部署过程中，磁盘须为gpt分区表。有人提出，wtga在mbr没有生成EFI文件夹是个案，但在我的机器上确实没有出现。<br>05.vhd与VHDX，根据微软官方描述，vhdx的优势在于增加存储容量和优化对大扇区存储器的支持，主要应用于企业级数据中心建立。我们可以确定，U盘，就算是1TB的超大U盘，与不嫩算是大扇区存储。而且，bootice是基于小扇区的引导维护工具，对于vhdx的优化和稳定性并不优于vhd，所以，我个人更推荐vhd模式。<br>06.关于“重新分区”选项。计算机更善于执行单一重复的工作，所以一次性下达多个不同指令出错概率必然增大。所以我个人建议手动用diskgenius进行重新分区操作。<br>07.处于同样的目的，不建议在wtga的部署工作中添加.net framework 3.5，更建议在系统释放后手动添加。<br>08.关于Boot Camp的驱动，请及时关注苹果官网，及时更新相关驱动。同时，完全不建议使用驱动精灵的第三方工具。Mac OS X和Mac电脑本身相对于Microsoft_OEM_PC过于精致。<br>09.关于强迫症，虽然在Microsoft_OEM_PC上ESP分区只保留了128MB－200MB，但是，wtg系统在安装Boot Camp管理端后，实际在ESP中是多系统引导，简单说，你是可以直接从wtg的Windows系统下直接回到Mac OS X，而并不需要手动关机，再冷启动。所以，128-200MB的空间显然是不足的。所以，分区大小强迫症还是用在第一分区大小的调整更为合适。<br>10.关于VHD本身，系统部署时没必要勾选“固定大小VHD”，这样部署出来的vhd文件占用空间为7.5GB左右，为最小，既减少了出错概率，又方便后续的复制工作。同时按照@ykl2001 的提示，vhd文件的大小（这个大小是vhd文件最大值的限定）建议写为可移动磁盘第一分区可容纳的最大数值。不中转VHD意味着直接在可移动磁盘中创建VHD文件，减少了对内存和虚拟内存的压力，同时先创建后部署可以减少丢包的错误。</p>
+<p>15款MBP在可移动磁盘WTG的详细操作步骤（所有的软件均适用管理员权限运行！）</p>
+<p>01.用diskgenius删除可移动磁盘内所有分区。<br>02.将可移动磁盘的分区表模式转换为gpt模式，即软件中的GUID模式。<br>03.新建占用全盘空间的NTFS分区，不建立ESP或MSR分区，保存更改，格式化新分区，为新分区添加盘符。退出diskgenius。<br>04.使用wtga软件部署系统，模式为VHD模式 ，勾选不中转VHD。<br>05.如果不能保证所使用的install.wim为最新，请导入Mac USB 3.0补丁。<br>06.复制部署产生的EFI文件夹和win8.vhd文件到另一磁盘。<br>07.diskgenius下删除可移动磁盘内所有分区。<br>08.diskGenius下对可移动磁盘分区，第一分区占磁盘主要部分、NTFS、不要创建MSR分区；第二分区占用少量空间、ESP（在软件中叫做EFI system partition）。<br>09.保存分区表，退出diskgenius。<br>10.打开bootice，编辑wtga部署生成的BCD文件，模式为vhd，Disk指向可移动磁盘，Partition指向第一分区hd0，File指向\win8.vhd。<br>11.退出bootice，打开diskgenius，删除第一分区，为ESP分区指定盘符，在资源管理器下将EFI文件夹复制到ESP分区。<br>12.diskgenius下删除ESP分区盘符，右键强制删除ESP分区中除EFI文件夹外所有文件，重建第一分区，分配盘符。<br>13.退出diskgenius，资源管理器下将wtga部署的vhd文件复制到第一分区。<br>14.关闭windows，在Mac下开机按option，从标注为EFI的磁盘启动。进入系统释放过程。<br>15.系统会自动释放，“准备就绪”之后会弹窗：安装程序无法将Windows配置为在此计算机的硬件。<br>16.不管弹窗，按Shift＋F10，调出cmd。<br>17.输入“cd oobe”（不包括引号，中间两个圈时小写字母o），回车。<br>18.输入“msoobe”（不包括引号，六个字符全部是小写字母），回车。系统继续释放，选择语言和输入法，进入个性化设置。<br>19.设置颜色，计算机名称，参数调整，本地用户名。此时再次弹窗：安装程序无法将Windows配置为在此计算机的硬件。<br>20. 在cmd输入“exit”（不包括引号），回车。cmd窗口会关闭。焦点回到弹窗。<br>21.在弹窗处回车（就是选择确定），系统自动重启，按住option，选择可移动磁盘启动。<br>22.系统提示“您可以从应用商店获取新的应用”，“正在处理一些事情”，“尽情享用吧”。进入桌面。<br>23.安装Boot Camp驱动。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8%E5%8F%AF%E7%A7%BB%E5%8A%A8%E7%A3%81%E7%9B%98wtg%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" data-id="ckh49wmzz00050gnr0dmobv84" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-viploser对于wtg的一些感悟" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/viploser%E5%AF%B9%E4%BA%8Ewtg%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" class="article-date">
+  <time datetime="2020-01-03T19:58:37.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/viploser%E5%AF%B9%E4%BA%8Ewtg%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/">viploser对于WTG的一些感悟</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这篇帖子实际是自我反思，对技术的，对帖子的，对个人的。自从发布了三篇“教程”贴后，看到很多人在照着我的帖子wtg，当然，有人成功，有人失败。有人在各种引用和转链接，有人在质疑。我的技术路线分两种：如果是fixed磁盘，就走传统，相当于Boot Camp在另一块磁盘上；如果是removable磁盘，就按照<a target="_blank" rel="noopener" href="http://bbs.luobotou.org/thread-6511-1-1.html%E7%9A%84%E6%96%B9%E6%B3%95%E5%BB%BA%E7%AB%8B%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E5%BC%95%E5%AF%BC%E7%9A%84U%E7%9B%98%EF%BC%8C%E5%BC%95%E5%AF%BC%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%8C%87%E5%90%91%E8%87%AA%E5%B7%B1%E7%9A%84VHD%E3%80%82">http://bbs.luobotou.org/thread-6511-1-1.html的方法建立一个可以引导的U盘，引导的系统指向自己的VHD。</a></p>
+<p>在我的新人贴里我说过，在15-mac下wtg各种失败，只是因为mac主板固件规定的引导方式不同。Microsoft官方说windows to go无法支持mac也是因为长期以来mac存在三套不同的引导机制：在mac os x 10.5之前有两种（乔布斯在WWDC曾公开，在这之前，甚至所有的mac系统都被编译成powerPC和intel两种版本以适配不同构架的硬件），我们认为最近（13-late／mac os x 10.8+）的引导方式属于第三种。所以，在制作成形wtg系统之前，请考虑，你是为了mac，还是pc：mac-wtg要对准靶点；pc-wtg要广泛兼容。</p>
+<p>不得不承认，windows to go和hacintosh一样，是一个相对小众化、绝对精英化的IT范围。hacintosh的精巧绝伦之处在每一台电脑的硬件都不同，每一次调整DSDT都是一种心跳的经历；而windows to go的华美之处在于每一只U盘都是独特的，不同的主控和闪存、不同的焊接方式都会让结果不同，再加上bios firmware的限制，做一只“完美”（虽然不存在）的wtgU盘才是享受的。</p>
+<p>对于参照我的“教程”失败的WTGer们，我还有这么几点要说：1.我研究的并不是wtg，而是15-mbp的wtg，所以，我目前发布的“结局方案”只是我在15-mbp上的成功经验，而不是“教科书”，更不是“圣经”，一切教程都以nkc3g4的说明帖为准。2.Microsoft UEFI有一道SecureBoot的“保护”机制，官方说是为了防病毒保障系统下层安全。这个可以导致非认证的系统无法引导。这个非认证，指的是uefi下没有公钥的系统。举个最简单的例子就是预装win8的电脑直接ghost安装win7的话是无法启动的。3.Mac的引导和windows的uefi是不一样的。我们之所以认为mac采用了uefi启动，是因为它在硬盘中隐藏了一个ESP分区，而这个所谓的“ESP”分区，也是在windows下用diskgenius识别出来的（无论是Boot Camp还是wtg安装的windows）。所以，具体mac采用了什么启动方式，是没有外人知道的，apple也讳莫如深。我们从外围（坊间传闻）可以推测，他们用的并不是同一款协议，具体请自查uefi的en_wikipedia。如果有精力可以看uefi的协议全文。4.即使在win的uefi范畴内，不同厂家的bios程序也是不同的，比如部分Lenovo的bios会锁定SecureBoot为ON，再比如部分dell的bios程序会锁定无法打开bootmenu。还有靠固件包从legacy bios升级到oaf的bios无法确认其功能的完整性和真实性。5.虚拟机的限制实在太大，如果赶上bios本身不支持虚拟化，那虚拟机的结果和真机变数就真的很大了。虚拟机搞搞杀毒软件、搞搞未知程序还是可以的，但研究引导和启动，确实不合适。</p>
+<p>技术的提高完全在于折腾，我为了结局SD卡的wtg，单单是wtga的部署过程，我经历了不下50次。当年为了hacintosh，也基本半个月没正常用过电脑。但正是这种折腾的过程，才能在成果出现之时，体现出技术之美。这也就好比创新性实验，百转千回的配方，千锤万凿的试验，望穿秋水的统计，心烦意乱的等待，才能最终体会到论文发表时刻的欣喜与感动。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/viploser%E5%AF%B9%E4%BA%8Ewtg%E7%9A%84%E4%B8%80%E4%BA%9B%E6%84%9F%E6%82%9F/" data-id="ckh49wn2t001b0gnr2jv08hvf" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-15款mbp在u盘wtg解决方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8u%E7%9B%98wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-01-03T19:58:11.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8u%E7%9B%98wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">15款MBP在U盘WTG解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经过又几天的折腾，已经实现了15款Macbook Pro Retina在U盘上的WTG，识别为本地磁盘的U盘、识别为移动磁盘的U盘都尝试成功，现在公布解决方案。此问题至此有解。</p>
+<p>［设备］<br>Mac：Apple Macbook Pro 13.3 Retina (MF840CH/A)<br>U盘（本地）：擎泰SK6221主控，英特尔SLC闪存，USB3.0<br>U盘（移动）：toshiba Trans Memory Mx，32GB<br>系统：cn_windows_8.1_enterprise_with_update_x64_dvd_6050374<br>工具：wtga_3290，Diskgenius_3.8.0.0_pro单文件版<br>模式（本地）：传统模式，UEFI＋gpt<br>模式（移动）：VHD模式，勾选重新分区，勾选不中转VHD</p>
+<p>［步骤］（本地）<br>本地U盘的WTG步骤和移动硬盘完全相同。<br>01.win环境下，用diskgenius删除U盘下所有分区，新建一个占用全盘的NTFS分区。<br>02.win环境下WTG，工具为wtga_3290，磁盘为量产后的U盘，模式为传统模式，勾选uefi＋gpt，导入USB3.0补丁。<br>03.mac按住option开机，选择EFI磁盘启动。系统自动释放。<br>04.安装Boot Camp驱动，这里安装全部驱动即可。</p>
+<p>［步骤］（移动）<br>移动U盘的WTG步骤和SD卡下WTG的步骤基本一致。<br>01.win环境下WTG：使用U盘为toshiba Trans Memory Mx；VHD模式，vhd文件大小默认，勾选非交换VHD，勾选重新分区。<br>02.复制出第一步部署生成的全部文件（整个EFI文件夹和win8.vhd）到另一个磁盘。<br>03.DiskGenius下对U盘分区，第一分区28GB，NTFS；剩余空间建立ESP分区。<br>/*之所以把ESP分区后置，为了保证28GB为第一分区，win下只能识别可移动磁盘除MSR的第一个分区*/<br>04.将第一步生成的EFI文件夹导入ESP分区。<br>/*具体方法：删除分区0，DiskGenius给ESP分区分配盘符，文件管理器下把EFI文件夹复制进去，删除ESP分区盘符，重建分区0。*/<br>/*注意此处不要使用精简的EFI文件，精简EFI大概率语言报错！*/<br>05.将第一步生成的win8.vhd文件复制到U盘的第一分区。<br>06.导入USB3.0补丁。<br>/*在此处而不是第一次部署导入USB3.0补丁是为了保证能保留下一个干净的vhd文件，防止以后出问题。*/<br>07.用bootice修改U盘ESP分区中BCD文件：VHD模式；Disk指向U盘；Partition指向0:(NTFS,28GB)；File指向\win8.vhd。<br>/*此处可以进行EWF的导入工作。*/<br>08.Mac按住option开机，从U盘启动。<br>/*如果无法识别U盘或者释放前蓝屏，可以不导入USB3.0补丁，个别U盘确实有问题。*/<br>09.系统会自动释放，“准备就绪”之后会弹窗：安装程序无法将Windows配置为在此计算机的硬件。<br>10.不管弹窗/*不要对弹窗进行任何操作！不要按回车！*/，按Shift＋Fn＋F10，调出cmd。<br>11.输入“cd oobe”（不包括引号，中间两个圈时小写字母o），回车。<br>12.输入“msoobe”（不包括引号，六个字符全部是小写字母），回车。系统继续释放，选择语言和输入法，进入个性化设置。<br>13.设置颜色，计算机名称，参数调整，本地用户名。此时再次弹窗：安装程序无法将Windows配置为在此计算机的硬件。<br>/*此时同时存在cmd窗口和弹窗，光标在cmd，鼠标无效。不要对弹窗进行任何操作！*/<br>14. 在cmd输入“exit”（不包括引号），回车。cmd窗口会关闭。焦点回到弹窗。<br>15.在弹窗处回车（就是选择确定），系统自动重启，按住option，选择U盘启动。<br>16.系统提示“您可以从应用商店获取新的应用”，“正在处理一些事情”，“尽情享用吧”。进入桌面。<br>17.安装Boot Camp驱动。</p>
+<p>［特别提示］<br>01.一定要保存仅进行了部署的vhd文件，仅进行部署的含义是没有导入USB3.0补丁，没有进行任何启动，没有任何修改。此vhd文件可以在各种失败、错误后重新使用，以免再次进行系统部署。<br>02.U盘鱼龙混杂，不是任何一个U盘都可以进行wtg的，有一些超低价格的杂品U盘，闪存芯片和主控都是电子垃圾拼凑的，基本就不要尝试了。<br>03.金士顿的DataTraveller不同批次主控和闪存都不同，在使用体验上有高速版和低速版，连拷文件都不好使的U盘还是不要wtg了吧。</p>
+<p>［U盘来源］<br>我所使用的识别为本地磁盘的U盘，是论坛里@枫林做的，个人亲测好用，而且透明的很漂亮。<br>另一个识别为移动磁盘的U盘，买鼠标送的，没有什么特殊的地方，不是单独选的，也没检测过主控或是闪存。</p>
+<p>［简述］<br>简单的说，就是自建一个带有ESP的可启动U盘，ESP的BCD指向本U盘中的vhd。之后的问题就是用system权限完成系统释放。</p>
+<p>［一些建议］<br>关于是不是要勾选“重新分区”和“非中转VHD”，可以自己尝试。不同的环境，不同的U盘，产生的效果确实不同。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8u%E7%9B%98wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="ckh49wmzp00030gnrd1c5bkrl" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-15款mbp在sd卡wtg解决方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8sd%E5%8D%A1wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-01-03T19:57:46.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8sd%E5%8D%A1wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">15款MBP在SD卡WTG解决方案</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>经过几天的折腾，已经实现了15款Macbook Pro Retina在SD卡上的WTG，现在公布解决方案。此问题至此有解。</p>
+<p>［设备］<br>Mac：Apple Macbook Pro 13.3 Retina (MF840CH/A)<br>SD卡：Transcend JetDrive Lite 128GB<br>系统：cn_windows_8.1_enterprise_with_update_x64_dvd_6050374<br>工具：wtga_3290，ghost11.2，Diskgenius_3.8.5pro<br>模式：VHD＋UEFI</p>
+<p>［名词］<br>部署：wtga软件完成的工作。本质是把install.wim解压缩并且复制到指定分区或vhd，并且生成启动相关参数文件的过程。<br>释放：部署好的系统经过基础个性化设置成为完整可操控系统的过程。简单的说就是从选择语言到进入桌面的过程。</p>
+<p>［步骤］<br>01.纯PC下WTG：PC环境为win8.1pro，使用U盘为Corsair Survivor 32GB，VHD模式，vhd文件大小默认，勾选非中转VHD。<br>02.DiskGenius下对SD卡分区，第一分区120GB（12885MB），NTFS；剩余空间建立ESP分区。<br>/*如果正好是120*1024=12880MB，会显示为119.9GB，如果有强迫症，可以12885MB，保证显示120GB*/<br>/*之所以把ESP分区后置，为了保证120GB为第一分区，win下只能识别可移动磁盘的第一个分区*/<br>03.提取第一步部署生成的EFI文件夹，全部导入SD卡的ESP分区。<br>/*具体方法：删除分区0，DiskGenius给ESP分区分配盘符，文件管理器下把EFI文件夹复制进去，删除ESP分区盘符，重建分区0*/<br>04.用bootice修改SD卡ESP分区中BCD文件：VHD模式；Disk指向SD卡；Partition指向0:(NTFS,120GB)；File指向\win8.vhd。<br>5.提取第一步部署生成的win8.vhd，复制到SD卡分区0。<br>06.SD卡插入Mac卡槽，按住option开机，从SD卡启动。<br>07.系统会自动释放，“准备就绪”之后会弹窗：安装程序无法将Windows配置为在此计算机的硬件。<br>08.不管弹窗/*不要对弹窗进行任何操作！不要按回车！*/，按Shift＋Fn＋F10，调出cmd。<br>09.输入“cd oobe”（不包括引号，中间两个圈时小写字母o），回车。<br>10.输入“msoobe”（不包括引号，六个字符全部是小写字母），回车。系统继续释放，选择语言和输入法，进入个性化设置。<br>11.设置颜色，计算机名称，参数调整，本地用户名。此时再次弹窗：安装程序无法将Windows配置为在此计算机的硬件。<br>/*此时同时存在cmd窗口和弹窗，光标在cmd，鼠标无效。不要对弹窗进行任何操作！*/<br>12. 在cmd输入“exit”（不包括引号），回车。cmd窗口会关闭。焦点回到弹窗。<br>13.在弹窗处回车（就是选择确定），系统自动重启，按住option，选择SD卡启动。<br>14.系统提示“您可以从应用商店获取新的应用”，“正在处理一些事情”，“尽情享用吧”。进入桌面。<br>15.安装Boot Camp驱动：先进入$WinPEDrivers$，删除AppleSPIDevice，之后运行setup.exe或者手动安装。<br>/*文件名可能不同，操作实质为删除SD卡卡槽驱动*/<br>/*安装驱动过程有一定几率浅蓝屏，我因为温度过高蓝过一次，有“:-)”表情的那种，百分数读到100%会重启，重启之后继续就好。如果驱动安装失误或错误，会直接没有表情的那种浅蓝屏，需要重新把vhd拷进去（把装坏了的替换掉），然后重新释放；所以个人建议把vhd做好备份，系统坏了可以随时救回来*/</p>
+<p>［简述］<br>简单的说，就是自建一个带有ESP的可启动SD卡，ESP的BCD指向本SD卡中的vhd。之后的问题就是用system权限完成系统释放。</p>
+<p>［分析］<br>系统会卡在“安装程序无法将Windows配置为在此计算机的硬件”，说明问题在windows而不是macbook/*如果是mbp的问题，会无法发现可启动SD卡或者直接无法引导*/。<br>所以我专门研究了windows系统的释放过程。安装过程中，msoobe的执行是Administrator权限（至少不是system权限），而cmd是system权限，用权限直接绕过了弹窗。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8sd%E5%8D%A1wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="ckh49wmz500010gnr1jr10089" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Macintosh下利用VMware虚拟机引导WTG系统教程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近有一篇这样的帖子“求助！如何用mac下的虚拟机打开装在U盘的系统”（http:&#x2F;&#x2F;bbs.luobotou.org&#x2F;thread-17624-1-1.html）引起了我很大的兴趣。我觉得有必要研究一下。说实话，好久没有想写个教程的冲动了。 目前全网没有找到如何在Macintosh电脑上直接在MAC OS X或者macOS内直接测试Windows to Go系统效果的教程。Windows下的虚拟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Macintosh下利用VMware虚拟机引导WTG系统教程">
+<meta property="og:url" content="http://example.com/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="最近有一篇这样的帖子“求助！如何用mac下的虚拟机打开装在U盘的系统”（http:&#x2F;&#x2F;bbs.luobotou.org&#x2F;thread-17624-1-1.html）引起了我很大的兴趣。我觉得有必要研究一下。说实话，好久没有想写个教程的冲动了。 目前全网没有找到如何在Macintosh电脑上直接在MAC OS X或者macOS内直接测试Windows to Go系统效果的教程。Windows下的虚拟">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T20:02:31.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.685Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-macintosh下利用vmware虚拟机引导wtg系统教程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/" class="article-date">
+  <time datetime="2020-01-03T20:02:31.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Macintosh下利用VMware虚拟机引导WTG系统教程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近有一篇这样的帖子“求助！如何用mac下的虚拟机打开装在U盘的系统”（<a target="_blank" rel="noopener" href="http://bbs.luobotou.org/thread-17624-1-1.html%EF%BC%89%E5%BC%95%E8%B5%B7%E4%BA%86%E6%88%91%E5%BE%88%E5%A4%A7%E7%9A%84%E5%85%B4%E8%B6%A3%E3%80%82">http://bbs.luobotou.org/thread-17624-1-1.html）引起了我很大的兴趣。</a><br>我觉得有必要研究一下。说实话，好久没有想写个教程的冲动了。</p>
+<p>目前全网没有找到如何在Macintosh电脑上直接在MAC OS X或者macOS内直接测试Windows to Go系统效果的教程。Windows下的虚拟机可以直接挂载物理硬盘；但是Macintosh本身的磁盘管理是挂载即为（才为）连接，没有Windows下硬件连接但是不对磁盘（主要是指分区表位置）进行挂载的机制——你从Mac OS X或者macOS推出磁盘，其它所有Application都是无法接触磁盘内容的。这样一来，不要说挂载磁盘了，读取都是问题。我曾经强制在vbox下添加控制器（IDE SATA SCSI USB）并开启了host I/O，结果五国了。</p>
+<p>我的思路是这样的：<br>1.VMware有一个自带的功能：从Boot Camp导入虚拟机。<br>2.Windows to Go安装了Boot Camp Assist驱动之后，会被Mac OS X或者macOS识别为Boot Camp。<br>3.从VMware直接读取Windows to Go的系统，至于磁盘挂载，文件读取的事情，让Vware去干吧。</p>
+<p>设备：<br>电脑：Apple Macbook Pro 13.3 Retina 2015-early (MF840CH/A)<br>磁盘：CHIPFANCIER 128GB 2016<br>虚拟：VMware Fusion Pro 8.5.5（5192483）<br>系统：本机Mac OS X 10.11.6，WTG为Windows 8.1 Pro VOL</p>
+<p>操作：<br>1.制作一个UEFI＋gpt的传统模式Windows8.1及以上系统的Windows to Go。<br>2.在Macintosh上开机按option从Windows to Go启动，完成系统释放，并安装Boot Camp Assist驱动。<br>3.在Mac OS X或者macOS内安装VMware Fusion。<br>4.打开VMware，在虚拟机资源库左上角点击添加虚拟机，选择“从Boot Camp安装”。<br>5.选择你的Windows to GO磁盘，此时识别为BootCamp卷。<br>6.选择“创建Boot Camp虚拟机”，此操作会直接使用Boot Camp卷，即你的Windows to Go磁盘。<br>7.点击右下角“继续”。<br>8.此时会提示是否下载VMware Tools，这个是VMware虚拟机的驱动，建议下载，不下载页可以用，效果和不装驱动的Windows一样，而且非常卡。<br>9.点击右下角“继续”。<br>10.此时VMware会识别你Boot Camp即Windows to GO的系统版本并生成一套适合的配置信息。<br>11.可以按照其默认配置建立虚拟机，点击“完成”；也可以修改配置，点中间偏下的“自定设置”进入虚拟机设置。<br>/*一般而言默认配置较低，提供单核CPU和较小的运行内存，可以自定义分给VMware不超过系统总性能50%的配置。*/<br>12.启动虚拟机，完成系统释放：过程中会经历正在准备硬件——正在准备就绪——正在处理一些事情（测试系统为Windows8.1）。<br>13.可能需要重新激活你的系统。</p>
+<p>特别注意：<br>VMware才有从Boot Camp导入虚拟机的功能，vbox没有。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/" data-id="ckh49wn2d00110gnr3o869m8x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/lenovo-ideacentre-b520e-%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E6%8E%A2%E7%B4%A2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Lenovo ideacentre B520e 引导方式探索
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">苹果电脑安装Windows操作系统的方法汇总</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>锤子科技Smartisan T2获取Root权限及Xposed框架安装 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="写在最前面：Smartisan及Smartisan为锤子科技知识产权；Android为Google公司知识产权；相关应用的知识产权属于其开发着所有。本文涉及到的应用及ROM包仅供技术提升和试用，请在下载后24小时内自动删除。本帖仅就获取Root权限及安卓Xposed框架的操作进行研究及探讨，由此带来的手机“变砖”、数据丢失等损失由操作者本人负责，本人不承担责任。本帖属于萝卜头IT论坛的深度技术探究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="锤子科技Smartisan T2获取Root权限及Xposed框架安装">
+<meta property="og:url" content="http://example.com/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="写在最前面：Smartisan及Smartisan为锤子科技知识产权；Android为Google公司知识产权；相关应用的知识产权属于其开发着所有。本文涉及到的应用及ROM包仅供技术提升和试用，请在下载后24小时内自动删除。本帖仅就获取Root权限及安卓Xposed框架的操作进行研究及探讨，由此带来的手机“变砖”、数据丢失等损失由操作者本人负责，本人不承担责任。本帖属于萝卜头IT论坛的深度技术探究">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T20:01:14.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.659Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-锤子科技smartisan-t2获取root权限及xposed框架安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2020-01-03T20:01:14.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      锤子科技Smartisan T2获取Root权限及Xposed框架安装
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>写在最前面：Smartisan及Smartisan为锤子科技知识产权；Android为Google公司知识产权；相关应用的知识产权属于其开发着所有。本文涉及到的应用及ROM包仅供技术提升和试用，请在下载后24小时内自动删除。本帖仅就获取Root权限及安卓Xposed框架的操作进行研究及探讨，由此带来的手机“变砖”、数据丢失等损失由操作者本人负责，本人不承担责任。本帖属于萝卜头IT论坛的深度技术探究，而非面向全网发布的成熟技术档案。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。本文仅授权萝卜头IT论坛及本人个人博客独家发行，不授权给任何其他论坛、社区、网站、个人博客（包括但不限于锤子科技论坛、机锋、安智论坛及所有刷机软件对应的网站及论坛）。无论个人组织、无论私用商用，均严禁以任何形式转载。</p>
+<p>锤子科技对于Smartisan T2的管理一直类似于苹果对于iOS的方式：不开放Root权限，不开放BootLoader，不开放FastBoot，不开放DFU的开发环境和或愈语法规则，同时Recovery模式由官方版锁定。由此一来使用Root软件因为手机市场占有率过低没有公司和或工作组适配，卡刷二进制文件被官方Recovery阻挡。简单的说：获取Smartisan OS Based on Android Root权限的操作越来越像iOS的越狱，需要寻找漏洞。</p>
+<p>我自己的研究方向一直在应用商店的Google安装器上，一般的国产安卓手机需要谷歌服务框架时，需要一个Google安装器，该软件的运作需要Root权限，即将相关的文件夹及apk文件直接写入/System文件夹。Smartisan OS自身是不包含谷歌服务框架的，应用商店内提供一个“锤子特供”的Google安装器，该安装器不需要Root权限但是能完成/System树的操作，也就是说，Smartisan OS是包含隐藏Root权限的，会根据需要分配给需要较高权限的应用。而这个过程是完全隐藏的，在使用DeBloater进行系统分析时，存在一个antiRoot.apk的应用，同时存在一系列和权限（Rights）管理相关的应用，这一系列高级权限管理机制是被特殊保护的。简单的说：想要获取Smartisan OS的Root权限，需要找到保护（也就是隐藏）最薄弱的环节进行漏洞攻击。</p>
+<p>参考锤子科技官方论坛casonggk的描述［（作大死）T2降级root，安装xposed教程 <a target="_blank" rel="noopener" href="http://bbs.smartisan.com/thread-378672-1-1.html">http://bbs.smartisan.com/thread-378672-1-1.html</a> (出处: 锤子科技官方论坛)］，Smartisan OS v2.6.2 for T2包含一个可以用来获取Root权限的漏洞。</p>
+<p>我的操作过程如下：<br>00.下载所有所需软件的apk包和手机ROM包。待用。<br>01.清除Smartisan已有或已打开的文件保护类设置，比如安全中心——高级——加密手机选项，比如Smile Cloud（欢喜云）的查找手机选项，该过程可能需要还原出厂设置。<br>02.将Smartisan OS 2.6.2的zip完整卡刷包放入/sdcard目录（即外部存储空间根目录，或称为SD卡根目录）。<br>03.完整关机，按左侧向上辅助键＋右侧向下辅助键＋Home/Power键，出现黑背景下银白色的锤子科技logo（就是那个T形的锤子）即松开所有按键。手机进入REC模式（Smartisan Recovery）。<br>04.使用右侧的上下方向辅助键，让高亮条选中“Apply Update From SDcard”，按Home/Power键进入第二级菜单；使用同样方法选择“/0”，进入三级菜单；使用同样方法选择卡刷包，其默认名称为“2.6.2-2016041523-user-is-c-2157500e.zip”进入四级菜单；此时选项为多个no和一个yes-Update From SDcard，选择yes，开始卡刷。手机会降级至Smartisan OS 2.6.2。/*本步骤中的二三四级菜单并非严格的多级tree目录，可以理解为第二三四小步骤*/05.卡刷降级结束后双清。使用04步骤中的方法以此选择“Wipe Data/Factory Reset（Wipe Data/Factory Partition）”和“Wipe Cache Partition”。完成双清。<br>06.选择“Reboot System Now”重启手机，按照提示完成设备激活和语言等基础设置。此时注意，不要登陆Smile Cloud（欢喜云）账户。进入设置——关于本机，点按五次Smartisan OS版本激活开发者选项，进入设置——全局高级设置——开发者选项，打开USB调试。<br>07.Smartisan OS默认没有文件管理器，只有一个AirDroid可以暂时当作文件管理器来用。我先在Airdroid下安装了ES文件管理器。然后以ES管理器为基础安装了KingRoot。/*此处个人建议先将所需的apk文件全部下载好备用，同时操作前想卡刷包放入SD卡根目录，一旦出现问题可以直接进入REC模式回到出厂化的Smartisan OS回到非Root环境中*/<br>08.用KingRoot获取手机Root权限。Root后进入KingRoot自带的权限管理器，会发现一个系统应用申请Root权限，管理器采取的是询问操作，手动对其授权。该系统应用既可能为中文名称，也可能为英文名称，图标为蓝色圆形。<br>09.安装SuperSU，完成后不要打开应用，安装SuperSU PRO的增量包。安装后打开SuperSU，提示更新二进制文件，选择取消，提示关注Twitter或GooglePlus，选择暂不关注。进入KingRoot权限管理器，检查对SuperSU Pro授权（默认是授权的，但需要检查）。<br>10.安装SuperSUme Pro。打开应用，自检提示框消失后，按屏幕上唯一的巨大蓝色按钮，KingRoot管理器弹提示窗询问，选择授权。此时系统弹窗询问是否痛过调试安装k4rhelper，选确认/允许。SuperSUme Pro读条，之后自动退出。<br>11.再次打开SuperSUme Pro，提示进行第二阶段操作，再次按屏幕上那个大按钮，此时系统弹窗询问是否允许通过调试安装SuperSU，选确认/允许。然后SuperSU弹窗询问，选择授权，SuperSUme Pro再次读条。之后退出。<br>12.打开SuperSU Pro，提示更新二进制文件，选更新，模式选择传统/一般。弹窗显示正在更新，小圈圈开始转，之后提示有冲突的授权管理软件是否卸载，选卸载。提示更新完成，根据提示重启。<br>13.安装FireFlash，通过SuperSU Pro授权。点AGREE同意许可协议，按NO THANKS不关注Twitter或GooglePlus。按右下角加号，选择倒数第二个“Flash ZIP or OTA”，选择已经下载好的Xposed卡刷包，取消勾选“Mount /System read/write”，点闪电标志的Flash开始软卡刷，系统会重启进入虚拟REC环境，之后再次重启回到桌面。<br>14.安装Xposed Installer，重启激活Xposed框架。<br>至此操作完成。</p>
+<p>至于为什么要获取Root权限，主要为了卸载预装的触宝输入法和搜狗输入法，以及内建的应用商店和游戏中心。出于我对于国内安卓环境应用的极度不信任，和BAT系厂商对权限的无限制攫取，我选择放弃保修获取Root权限。如果你对于保修有执念或者担心变砖无法挽救（国内修手机的很少有会接锤子活的，如果是个人Root操作，官方也不予保修），请使用原版Smaartisan OS。如果同时希望拥有保修又想禁用自带软件，请使用DeBloater进行Hide操作而不是获取Root权限后的卸载操作。</p>
+<blockquote>
+<p>本次操作所用到软件版本号为：Smartisan OS：2.6.2-2016041523-user-is-c02157500e.zip 下载地址见锤子科技论坛相关帖子。<br>KingRoot：NewKingrootV4.9.6_C151_B296_office_release_2016_08_03_105003.apk<br>SuperSU：SuperSU-2.76_Final.apk<br>SuperSU Pro：SuperSU Pro-2.76.apk<br>SuperSUme Pro：Super-Sume Pro 9.1.8.apk<br>FireFlash：eu.chainfire.flash-0.52-52.apk<br>Xposed卡刷包：xposed-v86-sdk22-arm64<br>Xposed Installer：XposedInstaller_3.0_alpha4.apk</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/" data-id="ckh49wn8i004d0gnr9zqp0y7w" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          针对Macintosh的多系统维护工具U盘构建方案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/%E5%9F%BA%E4%BA%8E15-rmbp%E5%92%8Cchipfancier%E7%A3%81%E7%9B%98%E7%9A%84%E4%B8%89%E7%B3%BB%E7%BB%9F%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">基于15-rMBP和ChipFancier磁盘的三系统构建方案</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

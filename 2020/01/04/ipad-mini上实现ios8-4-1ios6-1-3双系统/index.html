@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>iPad mini上实现iOS8.4.1+iOS6.1.3双系统 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前一段从论坛消失了很久，工作比较忙，还整天有夜班，今天心情比较爽，所以呢，今天写点玄妙的东西。关于iOS的。我手头有一台iPad mini，第一代的mini，刚发布就买了，当时是iOS6，具体版本忘了，后来一直随着iOS新版本升级，直到升级到了iOS9.3.5，大家应该能体会，以iPad mini那个硬件，跑iOS9.3.5就跟看幻灯片似的。因为实在受不了卡顿，一直想降级。前一段iPhone4S和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iPad mini上实现iOS8.4.1+iOS6.1.3双系统">
+<meta property="og:url" content="http://example.com/2020/01/04/ipad-mini%E4%B8%8A%E5%AE%9E%E7%8E%B0ios8-4-1ios6-1-3%E5%8F%8C%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前一段从论坛消失了很久，工作比较忙，还整天有夜班，今天心情比较爽，所以呢，今天写点玄妙的东西。关于iOS的。我手头有一台iPad mini，第一代的mini，刚发布就买了，当时是iOS6，具体版本忘了，后来一直随着iOS新版本升级，直到升级到了iOS9.3.5，大家应该能体会，以iPad mini那个硬件，跑iOS9.3.5就跟看幻灯片似的。因为实在受不了卡顿，一直想降级。前一段iPhone4S和">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T20:16:38.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.861Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-ipad-mini上实现ios8-4-1ios6-1-3双系统" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/ipad-mini%E4%B8%8A%E5%AE%9E%E7%8E%B0ios8-4-1ios6-1-3%E5%8F%8C%E7%B3%BB%E7%BB%9F/" class="article-date">
+  <time datetime="2020-01-03T20:16:38.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iPad mini上实现iOS8.4.1+iOS6.1.3双系统
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前一段从论坛消失了很久，工作比较忙，还整天有夜班，今天心情比较爽，所以呢，今天写点玄妙的东西。关于iOS的。我手头有一台iPad mini，第一代的mini，刚发布就买了，当时是iOS6，具体版本忘了，后来一直随着iOS新版本升级，直到升级到了iOS9.3.5，大家应该能体会，以iPad mini那个硬件，跑iOS9.3.5就跟看幻灯片似的。因为实在受不了卡顿，一直想降级。前一段iPhone4S和iPad2无SHSH降级iOS6.1.3的帖子比较火，既然iPad mini和iPad2配置基本上是一样的，就一直想要把iPad mini也降级到iOS6.1.3，查了很多帖子，因为iPad mini和iPad4是同一代产品，目前iPad mini降级仍然需要SHSH，我是没有的，之前对折腾iOS设备没有什么兴趣，也就没做过什么备份。大家应该知道SHSH文件的本质是OTA的私钥，所以，基于密码学基本原理，企图通过修改他人SHSH来签署自己OTA是实现不了的，这么一来，就只能考虑别的方案了。</p>
+<p>爬了贴吧，威锋，爱思，pp各大论坛，找到了一个比较稳定的也比较极客的方法。我亲测可用，分享给大家。iOS9.3.5的越狱，iOS8.4.1的越狱，iOS双系统的安装均有各种教程，此处我按照我操作的流程进行整理，并备注了特殊注意事项。亲测可用。</p>
+<p>主要思路是iOS9.3.5不完美越狱——降级iOS8.4.1——越狱——coolbooter——iOS8.4.1+iOS6.1.3双系统，双系统完美越狱。</p>
+<p>下面写一下我的操作流程。</p>
+<p>00.首先，我有一台iOS9.3.5的iPad mini Wi-Fi 16GB A1432 MD531CH/A。<br>01.退出iCloud、App Store等各种苹果服务，防止出现变砖锁死的问题。<br>02.用爱思助手链接iPad mini（这一步必须要用Windows系统，爱思助手只有Windows版本）。<br>03.在爱思助手中选择刷机越狱（上面）——一键越狱（第二行）——iOS9.3.5越狱（右侧）。<br>04.此时iPad上会安装一个新的App，Phoenix。<br>05.进入设置——通用——设备管理（根据爱思助手版本不同，新版本会自动打开此项设置）。<br>06.点击那个邮箱地址（j11vb232f0g7e@rccy……），之后点“信任j11vb232f0g7e@rccy……”，在弹窗中再次点击信任。<br>07.点击打开Phonenix。<br>08.点击Phonenix上的Prepare For Jailbreak。<br>09.点击Phonenix上的Accept。<br>10.此时有弹窗弹出，点击Dismiss。<br>11.点击Phonenix上的Proceed With Jailbreak。<br>12.点击Phonenix上的Begin Installation（这个按钮在最下面）。<br>13.此时弹出弹窗，点击蓝色的Use Provided Offsets，不要点击红色的按钮。<br>14.此时自动重启，开机后如果出现Cydia则越狱完成，如果未出现重复07——13步骤。<br>/*在越狱过程中，第02——04步骤可以使用Cydia Impactor工具替代。下载Impactor，下载所需ipa文件，将ipa文件拖入Impactor窗口内，提示输入Apple ID和密码，此ID需没有开启二次及双重验证，如安装失败，请在网页版Apple ID管理界面重新注册一个新的Apple ID进行操作，ipa安装结束后执行第07——13步骤，直到出现Cydia，越狱完成。*/<br>15.在Cydia中搜索Filza File Manager，并安装此App。<br>/*第一次打开cydia后或有更新提示，之间选择最后一项Ignore（Temporary）即可。*/<br>/*在第13——15步中可能提示存储空间已满，选择忽略即可。此处应为越狱进行中的bug。*/<br>16.在Filza File Manager中定位至/System/Library/CoreServices/地址，打开SystemVersion.plist文件进行编辑，将ProductVersion的对应键值修改为6.1.3，ProductBuildVersion的对应键值修改为10B329。<br>/*此步骤中，Filza打开后的默认位置不是根目录，需向上级目录返回，知道根目录/，之后今日/System。SystemVersion.plist的打开选项默认也不是编辑，需单击那个i，采用文本编辑器打开。方可完成此步骤。*/<br>17.选择设置——通用——还原——抹掉所有内容和设置，等待设备重启。<br>18.iPad重新开机后激活设备，直到进入桌面，此过程中不要登录Apple ID，不要设置密码，第01步的操作就是为方便此处激活做准备。<br>19.进入iOS桌面后打开设置——通用——软件更新，提示更新至iOS8.4.1，选择下载并更新。<br>20.系统自动读条，完成从9.3.5到8.4.1的降级（对系统和服务器而言是从6.1.3升级至8.4.1）。<br>21.开机进入iOS8.4.1，完成设备激活，此过程中不要登录Apple ID，不要设置密码。<br>22.使用第15步后备注中的方法，安装etasonJB软件。具体操作如下。<br>22.1.将iPad连接电脑<br>22.2.在电脑上启动Impactor，macOS系统和Linux系统请直接打开，不要使用sudo命令，Windows系统下不要使用使用管理员身份运行。<br>22.3.将etasonJB的ipa包拖拽至Impactor窗口内，此时Impactor有弹窗提示输入Apple ID和密码。<br>22.4.此处的Apple ID不能绑定二次验证、双重验证等密保模式，此处或有错误提示，如有，请重新注册一个Apple ID。<br>22.5.出现Complete之后，ipa被安装至iPad内。<br>23.打开刚才安装的etasonJB软件，点击中间蓝色的 Etason JB! 如果有弹窗报错，按照第05——06步处理，即信任此App的开发者。<br>24.iPad会自动重启，出现Cydia。此时可以删除etasonJB。<br>25.打开Cydia，添加源：coolbooter.com。<br>26.搜索coolbooter并安装App。此处或提示重启。<br>27.打开Coolbooter，点击Install，会以滚动菜单提示选择iOS系统版本，选定后，点击下方右侧的Storage（存储空间）按钮，定义第二系统所占的空间大小，最大为平分存储。<br>28.选定iOS系统版本及空间大小后点击下方左侧“I‘m ready!”，再次弹窗询问是否需要对第二系统进行越狱，个人推荐越狱。之后系统开始安装，过程为，下载ipsw，验证ipsw，安装ipsw，后期处理。<br>/*此处推荐越狱第二系统，因为iOS6.1.3或更早的iOS6支持App有限，越狱后可用App会更多更方便。*/<br>29.安装结束后或有自动重启，今日iOS8.4.1。<br>30.打开Coolbooter，点击Boot，即可进入iOS6.1.3，即第二系统，引导过程为：点击Boot，提示请锁屏10s后打开，短按锁屏按钮（日常锁屏怎么按就怎么按，不要按照开关机的时间去按那个钮），10s后/*最后15s后*/再次短按锁屏按钮，屏幕上开始跑代码，之后读条，进入iOS6.1.3。<br>31.个人推荐在两侧系统均安装Software Update Killer插件，防止iOS自动更新。</p>
+<p>结果：冷开机后进入iOS8.4.1，通过Coolbooter可以进入iOS6.1.3，iOS6.1.3关机再开机可回到iOS8.4.1。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/ipad-mini%E4%B8%8A%E5%AE%9E%E7%8E%B0ios8-4-1ios6-1-3%E5%8F%8C%E7%B3%BB%E7%BB%9F/" data-id="ckh49wn20000u0gnr7kx96bs7" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/%E9%99%8C%E5%BF%B5%E5%8F%8C/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          陌念双
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/%E9%A3%8E%E8%8A%B1%E9%9B%AA%E6%9C%88/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">风花雪月</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/page/7/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-我的wtg经历-2015款rmbp在sd卡wtg的思路" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E6%88%91%E7%9A%84wtg%E7%BB%8F%E5%8E%86-2015%E6%AC%BErmbp%E5%9C%A8sd%E5%8D%A1wtg%E7%9A%84%E6%80%9D%E8%B7%AF/" class="article-date">
+  <time datetime="2020-01-03T19:57:20.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E6%88%91%E7%9A%84wtg%E7%BB%8F%E5%8E%86-2015%E6%AC%BErmbp%E5%9C%A8sd%E5%8D%A1wtg%E7%9A%84%E6%80%9D%E8%B7%AF/">我的WTG经历 2015款rMBP在SD卡WTG的思路</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>［硬件环境］<br>电脑：2015款 Apple MacBook Pro 13-Retina<br>SD卡：Transcend JetDrive Lite 128GB<br>系统：cn_windows_8.1_professional_vl_with_update_x64_dvd_4050293</p>
+<p>［前言］<br>我之前是用Hacintosh的，最折腾的时候win7+win8.1+ubuntu+hacintosh四系统，所以对引导的问题专门研究过。对于15-mbp在SD卡无法WTG一直认为是引导的问题，而不是系统的问题，之所以强调这一点，因为本人已经完美成功移动硬盘下的WTG，所用磁盘为WD My Passport Ultra。</p>
+<p>［我的折腾流程］<br>01.在纯PC下WTG，工具为wtga_3280，硬盘为1T WD MyPassport ULtra 0830，模式为传统，勾选重新分区，勾选UEFI＋gpt；导入USB 3.0的补丁。<br>02.Mac下部署系统，安装全部Boot Camp驱动，安装.net framework 3.5。至此，得到可以在mac下用的win环境。以下所说的win环境均指这个WTG出的win。<br>03.在win环境下WTG，工具为wtga_3280，U盘为Corsair Survivor 32GB，模式为VHD，VHD大小默认，勾选非交换VHD。<br>04.提取刚才得到的VHD文件，大小为7.3GB。<br>05.SD卡新建120GB NTFS分区，剩余空间新建ESP分区。DiskGenius提取win环境ESP分区的EFI文件夹，用bootice修改BCD文件：VHD模式；Disk指向Corsair Survivor 32GB；Partition指向0:(NTFS,120GB)；File指向\win8.vhd。<br>06.复制第04步所得VHD文件进入120GB NTFS分区。<br>/*这里的第05-06步骤参考了<a target="_blank" rel="noopener" href="http://bbs.luobotou.org/thread-6511-1-1.html%EF%BC%8C%E6%8F%90%E5%8F%96win%E7%8E%AF%E5%A2%83EFI%E4%BF%9D%E8%AF%81option%E5%BC%80%E6%9C%BA%E5%8F%AF%E8%AF%86%E5%88%ABefi%E7%A3%81%E7%9B%98%E3%80%82/*/">http://bbs.luobotou.org/thread-6511-1-1.html，提取win环境EFI保证option开机可识别efi磁盘。\*/</a><br>07.重启，从SD卡启动。<br>/*此处的结果有三种：第一种卡死在准备就绪，无限圆圈；第二种准备就绪后弹窗无法安装；第三种出现释放界面，选择语言输入法后弹窗无法安装。证明本方案失效！*/<br>08.在win环境下WTG，工具为wtga_3280，硬盘为任意移动硬盘（我随便借了一个空的），模式为传统，勾选重新分区，勾选uefi＋gpt。不进行任何释放操作。<br>09.手动ghost刚才WTG得到的整个磁盘，gho文件包含ESP和系统两个分区。<br>10.在win环境下，手动还原gho文件到SD卡。<br>11.用bootice修改BCD文件：Partition模式；Disk指向Corsair Survivor 32GB；Partition指向0:(NTFS,120GB)。<br>/*提示，如果无法修改BCD，可疑提取BCD文件，修改后用diskgenius替换回去*/<br>12.关机，从SD卡启动。<br>/*此处的结果准备就绪后弹窗无法安装，重启后蓝屏，代码为1（0x很多0最后是1）*/</p>
+<p>［目前成就］<br>1.在15款rMBP中已经完成移动硬盘下的WTG。<br>2.把SD卡插在卡槽内，开机按option可以识别EFI分区。<br>3.可以加载SD卡内的传统系统或VHD系统。</p>
+<p>［未来折腾的方向］<br>/*其实这里才是本帖的重点，希望有精力的萝卜头们可以尝试一下，最近精力实在有限。*/<br>/*如果你不了解你正在进行的操作，请到此为止！本人只提供方案，对尝试引起的后果概不负责*/1.在SD卡里只存放系统文件，不存放任何的boot文件；在mac下安装Chameleon引导SD卡里的win系统。<br>2.在win环境安装移动磁盘识别补丁，将SD卡或者加读卡器的SD卡识别为本地磁盘，之后uefi＋gpt。<br>3.在Ubuntu下或者Mac下wine工具软件。可以在即使是移动磁盘上分区并识别多重分区。<br>4.Mac下修改DSDT，把SD卡直接识别为磁盘乃至分区，而不是SD卡。这个搞过Hacintosh的应该了解内建机制。<br>/*请不要说楼主太监了一类的话，真的没有时间了，所以才仅仅发了个思路。*/<br>5.降级Mac的主板固件。/*前方风险巨大！请勿轻易尝试！*/</p>
+<p>［结束语］<br>15-mbp上的WTG是必然可以实现的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E6%88%91%E7%9A%84wtg%E7%BB%8F%E5%8E%86-2015%E6%AC%BErmbp%E5%9C%A8sd%E5%8D%A1wtg%E7%9A%84%E6%80%9D%E8%B7%AF/" data-id="ckh49wn5e002m0gnr9x376e9b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-纠结成诗" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E7%BA%A0%E7%BB%93%E6%88%90%E8%AF%97/" class="article-date">
+  <time datetime="2020-01-03T19:56:35.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E7%BA%A0%E7%BB%93%E6%88%90%E8%AF%97/">纠结成诗</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>抬头望天<br>天很蓝<br>低头看我<br>很纠结<br>不知何去、何从<br>只知来去匆匆<br>无语花落<br>人事皆空<br>闲愁<br>不见少年的轻狂<br>不见青年的炽热<br>不见成年的潇洒<br>不见中年的稳重<br>也不见<br>老年的老态龙钟、事事愁望<br>仅见<br>与世隔绝<br>无网、无信、无人思念<br>流年堇时<br>却已看透终老<br>闲愁岁月<br>早已敲破红尘<br>仅使皈依佛门<br>难逃事事荒谬<br>世界？<br>人权？<br>我看不见<br>我只知道<br>专制是民主的基础<br>法治是人治的诡辩<br>我只看到<br>上学的想回家、在家的想上学<br>时间不是良药<br>不能洗涤旧迹<br>仅是留下微末的悲哀<br>还有一日半<br>又要面对繁复的尘世<br>有何见底<br>有谁怜惜？<br>也许那只是一种妄想，一种单恋……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E7%BA%A0%E7%BB%93%E6%88%90%E8%AF%97/" data-id="ckh49wn6r003e0gnr4elr5t9x" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-贰零壹零的笑泪" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E8%B4%B0%E9%9B%B6%E5%A3%B9%E9%9B%B6%E7%9A%84%E7%AC%91%E6%B3%AA/" class="article-date">
+  <time datetime="2020-01-03T19:55:35.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>►<a class="article-category-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E8%B4%B0%E9%9B%B6%E5%A3%B9%E9%9B%B6%E7%9A%84%E7%AC%91%E6%B3%AA/">贰零壹零的笑泪</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>生活很单调<br>有时候走入人群<br>虽是熙熙攘攘却依然感觉孤独<br>有时心里压抑很久却不知找谁倾诉<br>想跟同学诉诉苦却又怕自己的情绪影响到别人<br>想跟父母说却害怕他们会因过度担心而彻夜不眠</p>
+<p>二零零九的或喜或忧还未过去<br>二零一零却已过了大半<br>不断地背诵<br>不断地默写<br>在一次次上课与一次次下课的钟声中化为心梦</p>
+<p>春风吹起的是沙土<br>碜透我的心<br>夏雨撒下的是扬尘<br>凉透我的梦<br>秋天还未到来<br>却已经用落叶飞花割伤我清寒的衣</p>
+<p>我笑<br>笑人世百态炎凉与我无争<br>我哭<br>哭世间情为何物我心难宁</p>
+<p>人生空梦<br>但愿不醒<br>醒了难觅<br>遁入空门</p>
+<p>北大清华抑或北大青鸟<br>只是夜幕降临华灯初上时的心语抑或心雨<br>月落乌啼中的沉浮<br>并不每天上演<br>江枫渔火的奇幻<br>并不时刻显现<br>姑苏城外寒山寺的钟声<br>也并非为每一艘到达的客船鸣响</p>
+<p>张“圣人”的功绩<br>被复制<br>被粘贴<br>直到被南京总统府剪切</p>
+<p>成功是何物？<br>失败又何妨？<br>生存和可贵？<br>死亡曷悲伤？</p>
+<p>我再笑</p>
+<p>笑应试无改素质无方</p>
+<p>我再哭</p>
+<p>哭生死契阔世事无常</p>
+<p>我笑<br>仅笑得车辚马萧今世不再<br>我哭<br>仅哭得南辕北辙孤掌难鸣</p>
+<p>二零一零的笑泪无人知<br>二零一二的悲喜在我心</p>
+<p>……</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E8%B4%B0%E9%9B%B6%E5%A3%B9%E9%9B%B6%E7%9A%84%E7%AC%91%E6%B3%AA/" data-id="ckh49wn7p003w0gnr7fnwakvh" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-我的贰零零玖" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E6%88%91%E7%9A%84%E8%B4%B0%E9%9B%B6%E9%9B%B6%E7%8E%96/" class="article-date">
+  <time datetime="2020-01-03T19:54:51.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>►<a class="article-category-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E6%88%91%E7%9A%84%E8%B4%B0%E9%9B%B6%E9%9B%B6%E7%8E%96/">我的贰零零玖</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>不经意回首<br>已过了农历新年<br>想想二零零九年<br>似乎还那么近在眼前<br>总难以忘却那些苦难和欢颜<br>不想忘却曾经的一切<br>惟愿<br>快乐永远</p>
+</blockquote>
+<p>我的二零零九年是在仅有十天的寒假中开始的，初三的寒假，面临着中考，什么也不懂的我听候这老师们对我生活的安排，那时的生活，总是很累，总想好好休息一下，可每周只有周日下午半天的“假期”总觉得累，总想放假。开学后生活归于平淡，每天最开心的就是吃饭时的光景，我向来是不吃晚饭的，这习惯也似乎是从那时养成的吧，我也不太在乎什么营养，完全凭心情而定。别人吃饭的时候，我总是在楼道里唱歌，一些我改过歌词的歌，那似乎成了我最大的快乐。余下的，就是每天中午放学能和妹妹见一面。也许父亲说的对，我是一厢情愿的，我自我当哥的感觉太重了，但我知道，那时、现在，我是快乐的。我喜欢那时的生活。</p>
+<p>中考前是体育加试，也是相当头疼的一段时间，每天早晨出早操，经常加体育课，每节课练习考试项目，每天都是疲惫不堪，我甚至不知道，我那时是怎么挺过来的。但你不管怎么说，我挺过来了，体育加试、中考我都挺过来了！</p>
+<p>中考后，我和爹出去旅游，最难忘的是爬华山，那是和体育加试一样艰难的，人真的好神奇，能主动忘记当下的苦难，忘记所处的困境，在最艰难时找到快乐。永远的伟大！</p>
+<p>上高中后，我思想起伏很大，心情变化也很大。遇到了许许多多的“苦难”。先是军训，一个暑假未动的我，突然接到军训的通知心情很复杂，实在有些受不了，每天累得够呛，走路都打颤。然后是开学后的数学作业，老师讲课很快，作业练习册又是老版本，老师讲一节课，就要写老多老多的作业！再之后就是一件伤心事，奶奶去了，带着遗憾去了，没能看到我考上大学的一天，之后是更大的伤心，一天没上学的我，到学校竟发现，没有一个人注意到我整整一天没上学，我过去曾自大地认为，我是焦点人物，那时，一盆冷水泼醒了我早已该醒的春秋大梦。</p>
+<p>好在在二零零九年，我认识了刘天华他们，我结识了流堇文学社，我认识了一批和我一样喜爱文学的人。</p>
+<p>我的二零零九，百感交集的二零零九。我不会忘记在二零零九给我帮助的人们，我不应忘记、也不会忘记湛宇宏、袁赓、郭凯远、刘耀晨、阚平、洪梓桐……整个流堇文学社，当然，还有崔伟超。在我最艰难的时候，他（她）们给了我帮助，把我从坑里拉了出来，而不是像别人又扔下了石头。</p>
+<p>不写太多，再多的文字也不能写清我此时的百感交集。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E6%88%91%E7%9A%84%E8%B4%B0%E9%9B%B6%E9%9B%B6%E7%8E%96/" data-id="ckh49wn5l002p0gnr1iyseens" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-已知的结局" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E5%B7%B2%E7%9F%A5%E7%9A%84%E7%BB%93%E5%B1%80/" class="article-date">
+  <time datetime="2020-01-03T19:54:12.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a>►<a class="article-category-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E5%B7%B2%E7%9F%A5%E7%9A%84%E7%BB%93%E5%B1%80/">已知的结局</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>又一次和你不欢而散的夜<br>一个人走在只有路灯的街边<br>之前的场景又在脑海重现<br>回放你散落的冰冷触觉</p>
+<p>想在你身边多停留一点<br>却知道我在你心中毫无特别<br>想躲开你我间的交叉点<br>却无法抑制住焦灼的思念</p>
+<p>你随口说出的戏言<br>我却铭刻在心间<br>无谓的奢望只能在静默中熄灭<br>就算是生气的表演<br>你也丝毫没有察觉<br>最后只能装出无能为力的笑脸</p>
+<p>度过了一整夜凌乱的思绪<br>一个人走过雨后街道的清新<br>早应该唤回那独立的自己<br>捡拾起曾经贝壳的美丽</p>
+<p>就算不断这样告诉自己<br>也无法让那些温柔记忆淡去<br>关于你所有的零星点滴<br>已变成我难以割舍的印迹</p>
+<p>你轻松安慰的话语<br>外衣沾染的气息<br>你笨拙吹奏的口琴也是那么动听<br>在你坚定的眼神里<br>倒映着未来的风景<br>只是我从不曾出现在那未来里</p>
+<p>请将你的脚步暂停<br>回头看着我面影<br>让我在你怀抱哭泣哪怕一瞬息<br>当心跳惊醒了梦境<br>再也看不到你背影<br>该怎么来阻止眼角坠落的泪滴</p>
+<p>我没有勇气去抗拒已知的结局</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E5%B7%B2%E7%9F%A5%E7%9A%84%E7%BB%93%E5%B1%80/" data-id="ckh49wn4y002c0gnr7ws78fyp" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-谢幕演说" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E8%B0%A2%E5%B9%95%E6%BC%94%E8%AF%B4/" class="article-date">
+  <time datetime="2020-01-03T19:53:43.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E8%B0%A2%E5%B9%95%E6%BC%94%E8%AF%B4/">谢幕演说</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>夫今以此文作吾辞别基础文艺部之辞信，有感于卌余日相处共通，作文以别诸君。</p>
+<p>余于壬辰西历九月初入基础之文艺部，初以文艺部当秉文艺二字，文学创罡，艺术领纲，然卌余有日，深感初体之误！文艺再之文艺，盖基础之下辖！上有万石之压，下有激激之众，夫基础学生会以团体操之由大伤广屌之情，余虽未参，然后之廿八补助之事再痛无碍之关！而文艺部下辖于基础学生会，故欲文者，欲艺着又何为哉？</p>
+<p>念吾初之例会，会晤诸公，以余之视角，皆伪文青者也！吾自文字客，而难寻己类于文艺之部，悲哉！然时念入部之初损史馆、伤社联，当安于此处而后觅出踪，而今医大好声音之战线无尽无视，故今提辞行之事！</p>
+<p>余当知文字之客如医学之院当无己类之存焉，然余仍侥以自孤抑可活，人挪未不死！再忆医大好声音之复赛，许歌唱团之门门而不同赞助之门门，以亲之为由而不认部下亲之由由！余性厚黑！不忍心厚而言反黑者！如申讳梦月之言，吾之思索不容于文部，如郭讳骏飞之语，余之念必淘淘于史章！</p>
+<p>念数月之事，察几周之劳，想学分之痛，虽已去无处，今仍曰辞别！中控无我亦有梁公讳震，本硕无我怯留李氏司辰！文艺部无我亦为文艺之部，而无我，更彰尔部之察察无私！</p>
+<p>本演说本欲讲于吾通宵之会乐，然会乐消解，无处寻以而言，故撰而上呈于部长副部，传阅诸公！</p>
+<p>吾者道不同、志不参，喜好不相渗比，及同处张网之下，吾以吾处于覆盘之下，心无张，志无求！而诸公既已前，乞汝等共轭前行，安心上路，吾入枯井，无源无补，而亦自求安生！余非随遇而安之辈，亦非屈志甘生之侪，盖无利所求，吾之余文艺非员工之余老板，若后者，忍心弃至为千百之甘醴，弃格抛观以求房车之养，而文艺部者，仅以陶冶身心之为！</p>
+<p>言之将尽，言归题曰：辞别诸公，不知何时再见，仅祝安好耳！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E8%B0%A2%E5%B9%95%E6%BC%94%E8%AF%B4/" data-id="ckh49wn7k003u0gnr7y1h4et2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-血色流年" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E8%A1%80%E8%89%B2%E6%B5%81%E5%B9%B4/" class="article-date">
+  <time datetime="2020-01-03T19:53:00.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>►<a class="article-category-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E8%A1%80%E8%89%B2%E6%B5%81%E5%B9%B4/">血色流年</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>无奈，却只留得，血色流年！</p>
+</blockquote>
+<p>玄色的天幕下，残月泣出苍白的泪雨，猫头鹰再一次泣血哀鸣，又带走了一个迷途的灵魂，躺在房间里陌生而又熟悉的板床上，风只吹到脖子，光只照到发髻，转身，便以呕血染尽这血色流年！</p>
+<p>次天，舍友花祭这本应花季的流年。</p>
+<p>于流年，无数青年的鲜血或溅出惊人的莫尔斯电码，或浸染出震撼的玫瑰花，于这地狱似的人间，无少芳华，血染方纱。</p>
+<p>不知我们缘何要背负泣血的芳华？原本快乐的流年，却被无情的带上枷锁，成为未来的奴隶，孰不知，没有今天，没有流年何来未来的慨叹？！</p>
+<p>人拥有的，只会是似水的流年，而现在，是血色的流年。</p>
+<p>我们的流年，总是悲壮的流年，被囚禁于学校这座奥斯维辛的血色流年！我不知道这样出来的是人才还庸才？！若这种形势发展下去，恐怕，只会造就一代又一代剥削者和压迫者。</p>
+<p>我不知道是哪位“天才”的脑残领导讲过：“现在的孩子们可比我们强多了……”不知，是他残杀的生命染红了这流年，还是他窒息了这原本丰富的流年。我只知道，在广大的卑鄙的需要猥琐的人去龌龊的迎合的表面坚强的弱者们制定的伪大的规则下，我，我们，正在吞咽着血色的流年！</p>
+<p>如今，我看不到方向，体味不到来路方长，我只知道，在“人才”辈出的□□一中，有人用生命见证了，体味了，更新了，反抗了，证明了，宣传了，公开了，“弘扬”了，扩大了，捅破了，记录了，告别了，咏叹了，封杀了，着真正的血色流年。</p>
+<p>他用从楼顶到地面自由落体运动的时间去见证了，他用四分之一生命的苦涩去体味了，他造就的广泛的社会影响去宣传了，他溅出的热血去更新了，他勇往直前的去反抗了，他高呼的遗言去证明了，他的全国闻名去公开了，他学校的态度去弘扬了，他的成为笑谈的血渍去扩大了，他的振耳发聩的倒地声去捅破了，他的谢幕“演出”去记录了，他的血染的衣襟去告别了，他学校对消息的封锁咏叹了，封杀了这血色流年！</p>
+<p>我是个懦夫！不能去正视血染的流年，不敢用鲜血去赌明天，我没有勇气去用鲜血染红这本已血色，本应丰富的血色流年！</p>
+<p>血色的浸染，只能成为“天才”的脑残人士邀功请赏时的“政绩”，只会带来一些根本不懂我们的人的埋怨，这终会被由暂时的胜利者书写的历史所隐去。就像南京大屠杀的伤亡人数，三十万等于三百，等于三；既然二十九万九千九百九十七都可以被隐去，何况这一二百染红流年的勇士？又怎能不隐去这一二百染红流年的先烈？</p>
+<p>我的文字，也终将被依附于暂时胜利的小人们的历史家们隐去。但，有良知的人看到我们的遗骨，看到我们的鲜血，高尚的人永远不会忘记，这段刻骨铭心的血色流年！</p>
+<p>玄色的天幕下，流星以苍白的光芒闪过，猫头鹰哀鸣一声，带走一个灵魂，而他，转身，以泣血又一次血染这血色流年！</p>
+<p>人“活”于世，无奈，却只留得，血色流年。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E8%A1%80%E8%89%B2%E6%B5%81%E5%B9%B4/" data-id="ckh49wn74003l0gnr9rgthq8l" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-長恨·幸福" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E9%95%B7%E6%81%A8%C2%B7%E5%B9%B8%E7%A6%8F/" class="article-date">
+  <time datetime="2020-01-03T19:52:27.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a>►<a class="article-category-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/04/%E9%95%B7%E6%81%A8%C2%B7%E5%B9%B8%E7%A6%8F/">長恨·幸福</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>哪怕地老天荒，轉過身，仍是一個大唐。</p>
+<p>太極宮中，一樣的舞曲，勾起疼痛的幸福；長生殿內，依舊的陳設，引來無盡的相思。無論怎樣，他曾是一個幸福者：人生得一知己，何況又是紅顏；命途掌握權力，何況雄霸天下；生活歌臺暖響，何況霓裳羽衣？！</p>
+<p>睹物思人，與其說是一份相思，不如說是一份幸福。有物可睹，至少還可以勾勒出那嬌嫩的面龐和那晶瑩的肌膚。就算是浩浩大唐籠罩在漁陽鼙鼓之下，滿地的金釵，仍可以舉起一個華麗麗的大唐！</p>
+<p>是的，他荒淫，他誤國，他不理朝政，他任用外戚，可這又能如何？！幸福，不是精品店展示櫃中的奢侈品，天子，同樣有權力追求幸福，哪怕失去，也還要在瑩瑩火光中尋求。</p>
+<p>我們能容忍溫莎公爵，為何就不能接受一位明皇！我們能品味情種樂天的長恨，為何就不能容納一位漢皇！他受過太多的痛！一個人在淒冷的華清，一個人在破敗的太液，各一個人在冰冷的寢宮。一個男人，擁有天大的權力，卻不能挽救自己心愛的女人，只能眼睜睜地看著金釵落下。</p>
+<p>然而生活仍在繼續，導師一次次升天入地，法器一次次造訪仙山，他的她，卻再也不會回來。</p>
+<p>說他幸福，說他悲哀，都是龍脈的無奈！唐明皇悲也好，樂也罷，倘若是普通人，只是一筆籌碼，一次賭博。</p>
+<p>無論是霓裳羽衣還是烏啼蟲鳴，無論是膚如凝脂還是鐵衾冷榻，無論是三千寵愛還是群鳥四散，他幸福過，在那邊，他也幸福著！</p>
+<p>無論是朋友別哭還是感天動地，無論是相距咫尺還是對面天涯，無論是文筆交互還是形同陌路，我幸福過，在未來，幸福著。</p>
+<p>一個人，若能知道自己的喜好與特長，也是一份莫大的幸福，在自己喜歡的地方從事著特長，不必擔心，也不用擔心夢在何方。誰說一個人轉身，不能挺起華麗的衣裝，誰說一個人托舉，撐不住整個大唐？！</p>
+<p>幸福，也未必像政治書中所寫的那樣，去奮鬥，去拼搏，去奉獻，去把青春撒到邊疆。那隻是一種信仰，一種祈願，一種屹立的端莊！我的幸福，不在轉身之後的偶遇，也不再相識路上的波瀾，那隻是浮雲，只是表像，只是包裝！</p>
+<p>海子以身殉詩，留下絕唱，情撒滿江，幸福收場，帶著對詩的信念，帶著對未來的欣喜與嚮往！對於他，這紛紛揚揚的血漿就是幸福撲救的地方，從明天起，成了無數迷惘！</p>
+<p>四點零八分的北京，食指告別被蛛網查封的爐臺，我們不知道，何處是他的未來，然而他倔強的手卻從未鬆開，留下了一次次的呼告，相信未來！</p>
+<p>無論發生什麽，都要幸福地活，哪怕地老天荒，轉過身，仍是一個大唐！</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E9%95%B7%E6%81%A8%C2%B7%E5%B9%B8%E7%A6%8F/" data-id="ckh49wn8q004i0gnrd5jbhn0r" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-78" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/29/78/" class="article-date">
+  <time datetime="2019-12-28T19:29:14.000Z" itemprop="datePublished">2019-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/29/78/">Untitled Post - 4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/29/78/" data-id="ckh49wn0x000e0gnrc68y3bma" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-79" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/12/29/79/" class="article-date">
+  <time datetime="2019-12-28T19:29:14.000Z" itemprop="datePublished">2019-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/uncategorized/">uncategorized</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/29/79/">Untitled Post - 5</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2019/12/29/79/" data-id="ckh49wn13000g0gnr9kvbcuyy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

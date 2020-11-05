@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>我的WTG经历 2015款rMBP在SD卡WTG的思路 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="［硬件环境］电脑：2015款 Apple MacBook Pro 13-RetinaSD卡：Transcend JetDrive Lite 128GB系统：cn_windows_8.1_professional_vl_with_update_x64_dvd_4050293 ［前言］我之前是用Hacintosh的，最折腾的时候win7+win8.1+ubuntu+hacintosh四系统，所以对引导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的WTG经历 2015款rMBP在SD卡WTG的思路">
+<meta property="og:url" content="http://example.com/2020/01/04/%E6%88%91%E7%9A%84wtg%E7%BB%8F%E5%8E%86-2015%E6%AC%BErmbp%E5%9C%A8sd%E5%8D%A1wtg%E7%9A%84%E6%80%9D%E8%B7%AF/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="［硬件环境］电脑：2015款 Apple MacBook Pro 13-RetinaSD卡：Transcend JetDrive Lite 128GB系统：cn_windows_8.1_professional_vl_with_update_x64_dvd_4050293 ［前言］我之前是用Hacintosh的，最折腾的时候win7+win8.1+ubuntu+hacintosh四系统，所以对引导">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T19:57:20.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.602Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-我的wtg经历-2015款rmbp在sd卡wtg的思路" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E6%88%91%E7%9A%84wtg%E7%BB%8F%E5%8E%86-2015%E6%AC%BErmbp%E5%9C%A8sd%E5%8D%A1wtg%E7%9A%84%E6%80%9D%E8%B7%AF/" class="article-date">
+  <time datetime="2020-01-03T19:57:20.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Windows-To-Go/">Windows To Go</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      我的WTG经历 2015款rMBP在SD卡WTG的思路
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>［硬件环境］<br>电脑：2015款 Apple MacBook Pro 13-Retina<br>SD卡：Transcend JetDrive Lite 128GB<br>系统：cn_windows_8.1_professional_vl_with_update_x64_dvd_4050293</p>
+<p>［前言］<br>我之前是用Hacintosh的，最折腾的时候win7+win8.1+ubuntu+hacintosh四系统，所以对引导的问题专门研究过。对于15-mbp在SD卡无法WTG一直认为是引导的问题，而不是系统的问题，之所以强调这一点，因为本人已经完美成功移动硬盘下的WTG，所用磁盘为WD My Passport Ultra。</p>
+<p>［我的折腾流程］<br>01.在纯PC下WTG，工具为wtga_3280，硬盘为1T WD MyPassport ULtra 0830，模式为传统，勾选重新分区，勾选UEFI＋gpt；导入USB 3.0的补丁。<br>02.Mac下部署系统，安装全部Boot Camp驱动，安装.net framework 3.5。至此，得到可以在mac下用的win环境。以下所说的win环境均指这个WTG出的win。<br>03.在win环境下WTG，工具为wtga_3280，U盘为Corsair Survivor 32GB，模式为VHD，VHD大小默认，勾选非交换VHD。<br>04.提取刚才得到的VHD文件，大小为7.3GB。<br>05.SD卡新建120GB NTFS分区，剩余空间新建ESP分区。DiskGenius提取win环境ESP分区的EFI文件夹，用bootice修改BCD文件：VHD模式；Disk指向Corsair Survivor 32GB；Partition指向0:(NTFS,120GB)；File指向\win8.vhd。<br>06.复制第04步所得VHD文件进入120GB NTFS分区。<br>/*这里的第05-06步骤参考了<a target="_blank" rel="noopener" href="http://bbs.luobotou.org/thread-6511-1-1.html%EF%BC%8C%E6%8F%90%E5%8F%96win%E7%8E%AF%E5%A2%83EFI%E4%BF%9D%E8%AF%81option%E5%BC%80%E6%9C%BA%E5%8F%AF%E8%AF%86%E5%88%ABefi%E7%A3%81%E7%9B%98%E3%80%82/*/">http://bbs.luobotou.org/thread-6511-1-1.html，提取win环境EFI保证option开机可识别efi磁盘。\*/</a><br>07.重启，从SD卡启动。<br>/*此处的结果有三种：第一种卡死在准备就绪，无限圆圈；第二种准备就绪后弹窗无法安装；第三种出现释放界面，选择语言输入法后弹窗无法安装。证明本方案失效！*/<br>08.在win环境下WTG，工具为wtga_3280，硬盘为任意移动硬盘（我随便借了一个空的），模式为传统，勾选重新分区，勾选uefi＋gpt。不进行任何释放操作。<br>09.手动ghost刚才WTG得到的整个磁盘，gho文件包含ESP和系统两个分区。<br>10.在win环境下，手动还原gho文件到SD卡。<br>11.用bootice修改BCD文件：Partition模式；Disk指向Corsair Survivor 32GB；Partition指向0:(NTFS,120GB)。<br>/*提示，如果无法修改BCD，可疑提取BCD文件，修改后用diskgenius替换回去*/<br>12.关机，从SD卡启动。<br>/*此处的结果准备就绪后弹窗无法安装，重启后蓝屏，代码为1（0x很多0最后是1）*/</p>
+<p>［目前成就］<br>1.在15款rMBP中已经完成移动硬盘下的WTG。<br>2.把SD卡插在卡槽内，开机按option可以识别EFI分区。<br>3.可以加载SD卡内的传统系统或VHD系统。</p>
+<p>［未来折腾的方向］<br>/*其实这里才是本帖的重点，希望有精力的萝卜头们可以尝试一下，最近精力实在有限。*/<br>/*如果你不了解你正在进行的操作，请到此为止！本人只提供方案，对尝试引起的后果概不负责*/1.在SD卡里只存放系统文件，不存放任何的boot文件；在mac下安装Chameleon引导SD卡里的win系统。<br>2.在win环境安装移动磁盘识别补丁，将SD卡或者加读卡器的SD卡识别为本地磁盘，之后uefi＋gpt。<br>3.在Ubuntu下或者Mac下wine工具软件。可以在即使是移动磁盘上分区并识别多重分区。<br>4.Mac下修改DSDT，把SD卡直接识别为磁盘乃至分区，而不是SD卡。这个搞过Hacintosh的应该了解内建机制。<br>/*请不要说楼主太监了一类的话，真的没有时间了，所以才仅仅发了个思路。*/<br>5.降级Mac的主板固件。/*前方风险巨大！请勿轻易尝试！*/</p>
+<p>［结束语］<br>15-mbp上的WTG是必然可以实现的。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E6%88%91%E7%9A%84wtg%E7%BB%8F%E5%8E%86-2015%E6%AC%BErmbp%E5%9C%A8sd%E5%8D%A1wtg%E7%9A%84%E6%80%9D%E8%B7%AF/" data-id="ckh49wn5e002m0gnr9x376e9b" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/15%E6%AC%BEmbp%E5%9C%A8sd%E5%8D%A1wtg%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          15款MBP在SD卡WTG解决方案
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/%E7%BA%A0%E7%BB%93%E6%88%90%E8%AF%97/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">纠结成诗</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

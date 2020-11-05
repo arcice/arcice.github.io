@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>针对Macintosh的多系统维护工具U盘构建方案 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="&#x2F;*本教程包含复杂的磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*&#x2F; ［前言］但凡一个喜欢折腾电脑和操作系统的人都会用得到WindowsPE系统，而市面上的WindowsPE，要么自带OEM广告（比如老毛桃PE的GHOST操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="针对Macintosh的多系统维护工具U盘构建方案">
+<meta property="og:url" content="http://example.com/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="&#x2F;*本教程包含复杂的磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*&#x2F; ［前言］但凡一个喜欢折腾电脑和操作系统的人都会用得到WindowsPE系统，而市面上的WindowsPE，要么自带OEM广告（比如老毛桃PE的GHOST操作">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T20:01:40.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.668Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-针对macintosh的多系统维护工具u盘构建方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2020-01-03T20:01:40.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      针对Macintosh的多系统维护工具U盘构建方案
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>/*本教程包含复杂的磁盘多分区操作，操作失误将可能造成包括但不限于数据丢失、系统瘫痪、程序崩溃、磁盘损坏、保修失效（或需付费维修）等后果。请慎重操作。因试用本方案造成的包括但不限于磁盘、数据、操作系统、作业资料等丢失和受损，笔者不负责任。*/</p>
+<p>［前言］<br>但凡一个喜欢折腾电脑和操作系统的人都会用得到WindowsPE系统，而市面上的WindowsPE，要么自带OEM广告（比如老毛桃PE的GHOST操作会把360安全卫士装进去），要么过于精简使有些软件无法运行（我还没见过能运行wtga的WindowsPE，而且在已封装的WinPE里安装软件是几乎无法实现的）。而且我自己作为一个Macintosh用户，平时基本以Mac OS X为主要操作系统，偶尔还是会用到Windows和Ubuntu（以Ubuntu为代表的Linux，CentOS我也是会用到的）；市面上绝大多数的WinPE是不能满足我的维护需求的。于是我就萌生了构件多系统维护工具U盘的设想。</p>
+<p>［目标］<br>让一个U盘里同时有Windows、Mac OS X、Ubuntu的维护环境。<br>/*受限于Windows系统对于可移动磁盘分区和盘符的限制，这里的U盘推荐使用识别为本地磁盘的U盘。如果使用识别为可移动磁盘的U盘，请参照帖子的注释部分进行操作。同时进行Based System（这个系统可以类比WindowsRE来进行理解，即苹果系统的安装程序；但其内容和Windows安装程序相比更为丰富：包括基础的安装支持，也包括safari浏览器、磁盘工具等扩展应用程序。）后务必注意磁盘降温。*/</p>
+<p>［技术路线］<br>01.使用Windows to Go来代替WinPE，Windows to Go系统是完整的，可以任意运行工具软件，也可以任意安装软件（尤其是HFS+ for Windows这类的软件）。在此处我们需要一个可以手动调整引导的Windows to Go，而Macintosh又需要UEFI引导，所以，我们选择UEFI＋GPT引导的VHD模式进行Windows to Go的制作。操作后得到EFI文件夹和vhd文件，此步骤需要在U盘构建前进行，将文件备用。<br>02.使用Based OS作为Macintosh部分的维护环境。也可以直接使用Mac to Go。本文也将详细讲述Based System和Mac to Go的制作。特别是补充坛友dlh在Based System制作过程中的不详细叙述。<br>03.利用Ubuntu可以试用，甚至可以在光盘iso中完成试用的特点作为Linux部分的维护环境。这部分制作较为简单，使用官方推荐的Universal Installer（该软件即有Windows版本，又有Mac OS X版本。）即可完成；也可以使用量产工具降iso压入一个分区，将U盘做成多驱（Device）多启。</p>
+<p>［苹果Based System系统的构建］<br>关于如何建立Mac OS X安装U盘，网上有多种说法，基于Mac OS X自带的磁盘管理工具或者基于命令行的方案均有，但是其说法均不可靠，难以一次性成功，且网上直接复制的方法仅适用于从Mac App Store下载安装app后不尽兴任何的更改（包括不移动其存储位置且不修改名称）方可实现。需要系统降级或者需要测试版系统的用户并不适用。在这里，我整理了一份详细方案。我的方案基于终端命令行，如果你手头有一个app文件，无论其存储位置如何，其操作方案如下。<br>01.在Mac OS X自带的磁盘管理工具中，抹掉目标磁盘，新建基于GUID分区表的Mac OS 扩展（日志式）分区，分区命名需为英文，否则容易报错。/*此处我们假设新分区命名为“USB”*/<br>02.退出磁盘管理及其它设计磁盘和分区操作的软件，必要时使用“command＋option＋escape”快捷键调出“强制退出应用程序”菜单确认操作。<br>03.找到安装系统的app文件，右键选择“显示包文件”，在“/Contents/Resources”地址下找到“createinstallmedia”文件。<br>04.打开“终端”，并输入以下内容：/*下列所以的输入操作中，敲入的字符均仅包含引号内的内容，不包含引号*/<br>04.01.输入“sudo”<br>04.02.空格<br>04.03.使用鼠标拖拽“createinstallmedia”文件到终端窗口内，终端中自动转换为指针（文件地址）<br>04.04.输入“–volume”/*注意这里是两条连字符*/<br>04.05.空格<br>04.06.使用鼠标拖拽桌面的USB磁盘图标到终端窗口内，终端中自动转换为指针（目录地址）<br>04.07.输入“–applicationpath”/*注意这里是两条连字符*/<br>04.08.空格<br>04.09.使用鼠标拖拽安装系统app（比如“Install Yosemite.app”或者“安装Yosemite.app”）到终端窗口内，终端中自动转换为指针（文件地址）<br>04.10.输入“–nointeraction”/*注意这里是两条连字符*/<br>04.11.敲回车，此时提示输入密码<br>04.12.输入密码，输入过程中没有星号提示也不会显示出密码字符<br>05.完成上述操作后终端会开始“读条”，之后再次提示开始制作，最后终端窗口中出现新的命令输入窗口，操作结束。<br>06.为了方便开机选择启动位置，可以进行“美化”操作：<br>06.1.右击制作好的安装磁盘，选择“显示简介”<br>06.2.打开制作好的安装磁盘，磁盘内有安装系统app（比如刚才的“Install Yosemite.app”或者“安装Yosemite.app”）/*并非磁盘中仅有该文件，该文件为正常显示，其它文件为隐藏文件*/<br>06.3.拖拽安装系统app文件至06.1.简介中的左上角，替换磁盘图标。此时，安装磁盘的图标变为安装系统app的图标。</p>
+<p>［苹果Mac to Go系统的构建］<br>Mac OS X可以安装在任何一个识别为本地磁盘的设备上，USB闪存、USB移动硬盘、ThunderBolt接口均可。安装过程和Mac OS X更新过程完全一致。仅在安装前需要手动建立分区。在菜单栏中有“实用工具”选项，其下有“磁盘工具”，使用Based System中的磁盘工具，在目标位置中建立Mac OS 扩展（日志式）分区，即可安装。当然，盘越快，体验越好。经过测试CHIPFANCIER是可以实现Mac to Go的，其使用体验优于内置机械磁盘的Macintosh，劣于内置PCI-E接口固态硬盘的Macintosh。</p>
+<p>［多系统维护工具U盘构建］<br>因为Mac to Go制作完成后基本不具有可移动性，仅可在完全同型号的Macintosh电脑上启动，所以我更建议使用Based System作为Macintosh的维护系统，其包含完整的safari浏览器、终端命令工具、磁盘管理工具和启动管理。<br>01.按照［苹果Based System系统的构建］部分的提示，在U盘中建立Based System。<br>02.在磁盘管理中调整Based System分区大小，设定其大小为允许的最小值。<br>03.使用磁盘管理，在U盘剩余空间中建立MS-FAT格式分区。<br>/*如果希望使用完整的Mac OS X作为苹果维护环境，可以按照［苹果Mac to Go系统的构建］中提示安装完整Mac OS X系统，安装完成后等U盘冷却，进入Windows环境，使用DiskGenius进行Mac分区调整。*/<br>04.进入Windows环境，使用DiskGenius，将03.步骤中新建的分区进行调整，使之成为：一个350MB的FAT16格式分区，一个NTFS格式大分区，一个1GB的FAT32格式分区。<br>05.将wtga生成的EFI文件夹复制到350MB的FAT16格式分区中，vhd文件复制到NTFS格式大分区中。<br>/*如果所用磁盘为可移动磁盘，则分区顺序为：Based System分区，Windows vhd所在的NTFS分区，作为ESP存在的FAT16分区，预设的安放Ubuntu的分区。建立Based System后，按照上述顺序建立分区，在资源管理器中将vhd文件拷贝到NTFS分区；使用DiskGenius将EFI文件夹导入FAT16分区。*/<br>06.修改EFI文件夹下的BCD文件，使引导对应成立。<br>07.使用官方推荐的Universal Installer进行Ubuntu的安装。<br>/*如果所用磁盘为可移动磁盘，则Ubuntu的安装需要进入Mac OS X，使用Universal Installer进行指向分区的安装。*/<br>至此，该U盘中包含有苹果的Based System维护环境，包含Windows to Go作为微软维护环境，包含Ubuntu作为Linux维护环境。</p>
+<p>/*Windows及Windows to Go为Microsoft Corporation的（注册）商标，受到国际协议、美国法律和中国法律的共同保护，本文中所提到的所有Windows系统仅供技术学习及试用，请尊重版权，并请自觉于24小时内删除相关内容。*/<br>/*MacBook及Macintosh为Apple Inc.的（注册）商标，受到国际协议、美国法律和中国法律的共同保护，本文中所提到的所有Mac OS X系统进攻技术学习及试用，请尊重版权及原始发布协议，并请自觉于24小时内删除相关内容。*/<br>/*Ubuntu采用GPL协议发布，受到国际协议的保护，请尊重原是发布协议，使用即修改该项目的代码请遵守GPL协议。*/<br>/*wtga作者为@nkc3g4，由@nkc3g4享有著作权，其知识产权受到国际协议和中国法律保护，试用、使用请遵守原始发布协议。*/</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/%E9%92%88%E5%AF%B9macintosh%E7%9A%84%E5%A4%9A%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E5%B7%A5%E5%85%B7u%E7%9B%98%E6%9E%84%E5%BB%BA%E6%96%B9%E6%A1%88/" data-id="ckh49wn8e004b0gnrddh8azk0" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%AE%89%E8%A3%85windows%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E6%96%B9%E6%B3%95%E6%B1%87%E6%80%BB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          苹果电脑安装Windows操作系统的方法汇总
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/%E9%94%A4%E5%AD%90%E7%A7%91%E6%8A%80smartisan-t2%E8%8E%B7%E5%8F%96root%E6%9D%83%E9%99%90%E5%8F%8Axposed%E6%A1%86%E6%9E%B6%E5%AE%89%E8%A3%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">锤子科技Smartisan T2获取Root权限及Xposed框架安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

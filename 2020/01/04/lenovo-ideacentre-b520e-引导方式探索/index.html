@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Lenovo ideacentre B520e 引导方式探索 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Lenove ideacentre B520e一体机（i3-2120 3300MHz&#x2F;nVIDIA GeForce GT 520 1G&#x2F;500GB 7200r&#x2F;4GB DDR3）：引导模式为支持UEFI和Legacy BIOS双引导，但是UEFI模式仅支持FAT32模式磁盘（也可能支持Linux但是未测试），且UEFI引导优先于Legacy BIOS，同时BIOS内不可设置。  继上次遇到奇葩硬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lenovo ideacentre B520e 引导方式探索">
+<meta property="og:url" content="http://example.com/2020/01/04/lenovo-ideacentre-b520e-%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E6%8E%A2%E7%B4%A2/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Lenove ideacentre B520e一体机（i3-2120 3300MHz&#x2F;nVIDIA GeForce GT 520 1G&#x2F;500GB 7200r&#x2F;4GB DDR3）：引导模式为支持UEFI和Legacy BIOS双引导，但是UEFI模式仅支持FAT32模式磁盘（也可能支持Linux但是未测试），且UEFI引导优先于Legacy BIOS，同时BIOS内不可设置。  继上次遇到奇葩硬">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-01-03T20:02:57.000Z">
+<meta property="article:modified_time" content="2020-11-05T03:31:07.693Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-lenovo-ideacentre-b520e-引导方式探索" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/04/lenovo-ideacentre-b520e-%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E6%8E%A2%E7%B4%A2/" class="article-date">
+  <time datetime="2020-01-03T20:02:57.000Z" itemprop="datePublished">2020-01-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Lenovo ideacentre B520e 引导方式探索
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p><em>Lenove ideacentre B520e一体机（i3-2120 3300MHz/nVIDIA GeForce GT 520 1G/500GB 7200r/4GB DDR3）：引导模式为支持UEFI和Legacy BIOS双引导，但是UEFI模式仅支持FAT32模式磁盘（也可能支持Linux但是未测试），且UEFI引导优先于Legacy BIOS，同时BIOS内不可设置。</em></p>
+</blockquote>
+<p>继上次遇到奇葩硬件ThinkPad S230u之后，近日装机又遇到一特殊机器，Lenovo ideacentre B520e。不错，又是联想，联想对于奇葩及非主流的追求从未停止。这个ideacentre B520e是一台一体机，配置到还算中规中矩：i3-2120 3300MHz/nVIDIA GeForce GT 520 1G/500GB 7200r/4GB DDR3/23寸。补充说明：这个机器有6个USB口，全是2.0的。这个系列的机器没有统一快速服务代码，从联想官方支持网站来看，这个系列的机型应该已经被放弃了。而且没有提供BIOS更新包。</p>
+<p>这台机器刚接手的时候是自己升级的Windows10，Windows7OEM版本UPdate上去的。但是，从引导过程无法判定是UEFI的还是Legacy BIOS的：开机没有自检屏显，仅显示LENOVO的logo，下面没有小点画圈，然后闪出蓝色Microsoft的logo，下面小圈画圆，进入系统；如果说是UEFI的，应该不会有Microsoft徽标，如果是Legacy BIOS的，应该在LENOVO下面有快捷键提示（这是联想的一贯做法）。</p>
+<p>开机按F12弹出引导选项菜单，然后进入SetUp（就是BIOS，别问我为啥不按F1，各款机器进BIOS的风格完全不同，而且目前查不到这个机器用的什么主板，zol上都没有）。发现，没有UEFI选项，但是有Quick Boot的选项。从此处推测：机器不支持UEFI，Windows10是Legacy BIOS引导的。然后简化硬件，把除了键盘鼠标之外所有设备拔掉，插PE盘，还原BIOS引导顺序为缺省值，准备从PE引导，开机。直接进入了UEFI版本的WinPE！</p>
+<p>我用的是杏雨梨花PE，这款PE是支持UEFI+Legacy BIOS双启动的，如果进入了UEFI会直接Loading System读条，如果进入了Legacy BIOS PE会有选项菜单（Win8PE/Win10PE/DiskGenius/从硬盘启动……之类的吧）。这时候，这台BIOS设置里没有UEFI选项的机器，直接引导了杏雨梨花的UEFI PE！amazing！</p>
+<p>既然机器能从UEFI引导，那我就干脆装一个UEFI+gpt的系统吧，这么装多舒服，对吧。PE下完成了文件备份。关机，从Windows的安装U盘引导。这个U盘我把Windows的iso直接解压到了一个FAT32的U盘里，本身支持双模式引导的，用了很多次了，没出过问题。当然，这次也直接引导成功，选择分区的时候，提示：无法安装在此分区，因为目标磁盘采用MBR分区表格式，Windows需要在gpt分区表下安装。看到这个，完全证实了这台机器支持UEFI的猜想，而且，Windows安装程序是从UEFI引导出来的。</p>
+<p>好，我回PE用DiskGenius转了分区表（别问我为啥不用cmd，硬盘里还有文件啊！我只是把原来C盘文件导到别的区了啊！）。再次用安装盘引导，新建分区，默认创建了前面的ESP，Recovery，MSR三个分区，第四分区作为C盘使用。下一步，开始读条。整个流程异常舒服。但是，奇迹再一次发生。安装过程重启后，就是找不到可引导分区啊，就是找不到可引导磁盘啊，就是找不到引导文件啊！左上角一个横杠光标一直闪啊，然后就自动重启了啊。连错误代码都不告诉我啊。我真表示好神奇啊～</p>
+<p>好了，这下子知道这个机器不一般了。普通方法装UEFI肯定是不行了。</p>
+<p>既然用安装U盘不行，那我用DISM装行不行啊？！所谓DISM也不是我自己敲命令，是杏雨梨花PE里自带一个安装器，过程和wtg差不多。进PE，删掉前四个分区，转回MBR分区表（gpt表下那个安装器就是不认硬盘，非说分区表错误请修复，那就只能MBR了），重新建立一个NTFS区，然后开始装。自动完成，重启。这次我希望有一个UEFI+MBR的安装结果。之后效果和刚才一样一样的，那个横杠的光标闪啊闪，重启了。我都无语了，我装机也算有几千台（当然，算上某次网吧装机，某次机房装机，那就多了不是）了，这台机器到底是支持还是不支持UEFI啊？！</p>
+<p>既然失败了，肯定还是回PE去看看呗，这次，再次让我感到惊叹！这次的PE，是Legacy BIOS的！是Legacy BIOS的！是Legacy BIOS的！</p>
+<p>回想了一下刚才的过程。U盘PE可以引导，安装U盘可以引导。就是主系统不能引导。开始爬贴。但是，这台机器太小众了。只能自己折腾。然后想起了wtga里的一个参数UEFI_NTFS，豁然开朗！这台机器是只是UEFI但是不支持UEFI下NTFS引导的！也就是说，这台机器的引导层很接近于MacBook但是比MacBook更古老：B520e仅支持UEFI+FAT32引导；MacBook在Windows安装引导中仅支持UEFI+FAT32、但已经部署的Windows to Go系统是支持UEFI+NTFS引导的。</p>
+<p>我之前用安装U盘能成功引导是因为我恰好使用了FAT32格式的U盘，后来回想，这个U盘是我装Boot Camp时候用的。所以格式化成了FAT32。</p>
+<p>回到装机的话题。我搞懂了问题，但是又陷入了新的困境。我需要从Legacy BIOS引导Windows安装U盘。但是只要选择从这个FAT32磁盘启动，就是UEFI；而如果格式化成NTFS，直接无法引导了，左上角一个横杠光标一直闪啊。从这里，对B520e的引导机制有了更进一步的了解：同一个介质如果有两套引导机制，UEFI优先。</p>
+<p>最怕空气突然地安静，再一次陷入怪圈。我是拒绝用GHOST方式给客户安装操作系统的。这次需要装Windows8.1，还是Legacy BIOS+MBR的Windows8.1。</p>
+<p>我开始翻我的工程盘，看看有没有什么用得上的资源。直到我找到了nt6 installer。Windows8刚出品时候的神器。当年Win8出世的时候，其iso因为引导问题导致很多刻盘不能用的悲惨故事，这个工具便成了上古神器。</p>
+<p>再次进入PE，删掉前面的分区。然后MBR下建立NTFS分区，扇区对齐4096，GHOST一个Win7进去。开机，四个小点闪出来，GHOST版，你懂得，最后出现了小马OEM的logo，成功，Win7完成～把Windows8.1的iso解压到D区根目录，安装nt6 installer，模式二，自动识别活动分区C和资源分区D。开机显示两个引导项，从nt6进，直接挂载D区的Windows安装程序，抹掉C盘，走官方安装。读条完毕，重启。终于见到那个蓝色的Microsoft徽标了！也算半天功夫没白费吧！系统释放完毕后卸载nt6，完美。</p>
+<p>最终结果：Legacy BIOS+MBR的Windows8.1系统。<br>附件：上古神器nt6_hdd_installer<br>本文内容发布受GNU GPLv2协议保护。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/01/04/lenovo-ideacentre-b520e-%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E6%8E%A2%E7%B4%A2/" data-id="ckh49wn29000z0gnr59137pgx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/01/04/%E7%94%9F%E5%91%BD%E6%97%A5%E5%BF%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          生命日志
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/04/macintosh%E4%B8%8B%E5%88%A9%E7%94%A8vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%BC%95%E5%AF%BCwtg%E7%B3%BB%E7%BB%9F%E6%95%99%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Macintosh下利用VMware虚拟机引导WTG系统教程</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Windows-To-Go/">Windows To Go</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/uncategorized/">uncategorized</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%BF%83%E6%83%85%E6%9D%82%E6%84%9F/">心情杂感</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF%E6%A1%A3%E6%A1%88/">技术档案</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%96%87%E5%AD%A6%E5%88%9B%E4%BD%9C/">文学创作</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%AD%8C%E8%AF%8D%E6%94%B6%E8%97%8F/">歌词收藏</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%97%E8%AF%8D%E5%88%9B%E4%BD%9C/">诗词创作</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/11/">November 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/06/">June 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">January 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">December 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">November 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/11/05/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/06/27/be-ordinary/">BE ORDINARY</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E5%B0%86%E8%A5%BF%E8%A1%8C/">将西行</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/05/%E7%AB%A5%E8%AF%9D%E9%95%87plus-%E2%85%B1/">童话镇Plus Ⅱ</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/25/its-nice-to-hear-you-ding/">It’s Nice to Hear You Ding</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
